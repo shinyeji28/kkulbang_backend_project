@@ -11,34 +11,20 @@
       rel="stylesheet"
       type="text/css"
     />
-    <link href="/css/index.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" /> 
   </head>
   <body>
-    <!-- head start-->
-    <header>
-      <div class="header-wrap">
-        <a class="logo" href="index.html">
-          <img src="/images/icon.png" alt="꿀방icon" />
-          <h1>꿀방</h1>
-        </a>
-        <ul>
-          <li><button class="header-btn">어서오세요</button></li>
-          <li>
-            <button class="header-btn">
-              <a href="./login.html">로그인</a>
-            </button>
-          </li>
-        </ul>
-      </div>
-    </header>
-    <!-- head end-->
+    <%@ include file="/include/header.jsp" %>
+    
     <section>
       <main>
         <section class="banner">
           <div id="banners">
-            <img src="/images/uphouse1.jpg" alt="" />
-            <img src="/images/uphouse2.jpg" alt="" />
-            <img src="/images/uphouse3.jpg" alt="" />
+            <img src="${pageContext.request.contextPath}/assets/images/uphouse1.jpg" alt="" />
+            <img src="${pageContext.request.contextPath}/assets/images/uphouse2.jpg" alt="" />
+            <img src="${pageContext.request.contextPath}/assets/images/uphouse3.jpg" alt="" />
           </div>
           <div class="midMenu-container">
             <div class="midMenu-wrap">
@@ -57,7 +43,7 @@
                   placeholder="지역, 동, 아파트명을 입력하세요"
                 />
                 <button id="btn" type="submit">
-                  <a href="./search.html">검색</a>
+                  <a href="${pageContext.request.contextPath}/search.jsp">검색</a>
                 </button>
               </form>
             </div>
@@ -174,42 +160,30 @@
       <div id="cardsWrapper">
         <div id="wrap">
           <div class="card">
-            <div class="card-front"><img src="/images/house1.jpg" /></div>
-            <div class="card-back"><img src="/images/house2.jpg" /></div>
+            <div class="card-front"><img src="${pageContext.request.contextPath}/assets/images/house1.jpg" /></div>
+            <div class="card-back"><img src="${pageContext.request.contextPath}/assets/images/house2.jpg" /></div>
           </div>
         </div>
 
         <div id="wrap">
           <div class="card">
-            <div class="card-front"><img src="/images/house3.jpg" /></div>
-            <div class="card-back"><img src="/images/house4.jpg" /></div>
+            <div class="card-front"><img src="${pageContext.request.contextPath}/assets/images/house3.jpg" /></div>
+            <div class="card-back"><img src="${pageContext.request.contextPath}/assets/images/house4.jpg" /></div>
           </div>
         </div>
 
         <div id="wrap">
           <div class="card">
-            <div class="card-front"><img src="/images/house5.jpg" /></div>
-            <div class="card-back"><img src="/images/house6.jpg" /></div>
+            <div class="card-front"><img src="${pageContext.request.contextPath}/assets/images/house5.jpg" /></div>
+            <div class="card-back"><img src="${pageContext.request.contextPath}/assets/images/house6.jpg" /></div>
           </div>
         </div>
       </div>
       <!--카드돌아가는 부분  END-->
-      <script type="text/javascript" src="/js/home.js"></script>
+      <script type="text/javascript" src="${pageContext.request.contextPath}/js/home.js"></script>
     </section>
-
-    <!--FOOTER  START-->
-    <footer>
-      <div class="footer-content">
-        <div class="footer-nav">
-          <ul>
-            <li><a href="#">이용약관</a></li>
-            <li><a href="#">개인정보처리방침</a></li>
-            <li>고객센터: 123-4567</li>
-          </ul>
-        </div>
-        <div id="copyright">Copyright © 6BAN. All Rights Reserved.</div>
-      </div>
-    </footer>
-    <!--FOOTER  END-->
+    
+    <%@ include file="/include/footer.jsp" %>
+    
   </body>
 </html>

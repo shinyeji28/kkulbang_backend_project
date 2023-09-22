@@ -6,7 +6,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/css/search.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/search.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />   
+      
     <link
       href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap"
       rel="stylesheet"
@@ -18,22 +21,8 @@
     />
   </head>
   <body>
-    <header>
-      <div class="header-wrap">
-        <a class="logo" href="index.html">
-          <img src="/images/icon.png" alt="꿀방icon" />
-          <h1>꿀방</h1>
-        </a>
-        <ul>
-          <li><button class="header-btn">어서오세요</button></li>
-          <li>
-            <button class="header-btn">
-              <a href="./login.html">로그인</a>
-            </button>
-          </li>
-        </ul>
-      </div>
-    </header>
+    <%@ include file="/include/header.jsp" %>
+    
     <div class="back">
       <h1>
         <pre>
@@ -41,7 +30,7 @@
           실시간 거래를 한눈에 확인하실 수 있습니다.
         </pre>
       </h1>
-      <img src="/images/house5.jpg" />
+      <img src="${pageContext.request.contextPath}/assets/images/house5.jpg" />
     </div>
     <main class="container">
       <section class="show-container">
@@ -157,11 +146,13 @@
         </div>
       </section>
     </main>
+    <%@ include file="/include/footer.jsp" %>
+    
     <script
       type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7859d560b2d7fe4dfec5c4ce888fb58b"
     ></script>
-    <script type="text/javascript" src="../js/map.js"></script>
-    <script type="text/javascript" src="../js/search.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/map.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/search.js"></script>
   </body>
 </html>
