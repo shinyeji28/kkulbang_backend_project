@@ -2,8 +2,8 @@ package com.ssafy.service.meber;
 
 import java.sql.SQLException;
 
+import com.ssafy.member.model.dto.MemberDto;
 import com.ssafy.model.dao.member.MemberDaoImpl;
-import com.ssafy.model.dto.MemberDto;
 
 public class MemberServiceImpl implements MemberService {
 	//싱글톤	

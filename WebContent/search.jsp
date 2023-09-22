@@ -3,13 +3,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/search.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />   
-      
+    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/search.css" />
+	<%@ include file="/include/headerFooter.jsp" %>
+	
     <link
       href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap"
       rel="stylesheet"
@@ -46,23 +43,29 @@
         <div class="show-wrap">
           <div class="show-wrap2">
             <section id="nav-left" class="nav-left">
-              <input
-                type="text"
-                placeholder="원하시는 지역명/지하철역/아파트명을 검색하세요"
-              />
-              <button class="search-btn">
-                <i class="bi bi-search"></i>
-              </button>
-              <div class="user-condition">
-                <select>
-                  <option value="서울">서울</option>
-                </select>
-                <select>
-                  <option value="강남구">강남구</option>
-                </select>
-                <select>
-                  <option value="역삼동">역삼동</option>
-                </select>
+            
+              <form method="post" action="${pageContext.request.contextPath}/house?action=searchKeyword">
+	              <input
+	                type="text"
+	                placeholder="원하시는 지역명/지하철역/아파트명을 검색하세요"
+	                name="keyword"
+	              />
+	              <button sub class="search-btn">
+	                <i class="bi bi-search"></i>
+	              </button>
+	            </form>
+	          	<form>
+	              <div class="user-condition">
+	                <select>
+	                  <option value="서울">서울</option>
+	                </select>
+	                <select>
+	                  <option value="강남구">강남구</option>
+	                </select>
+	                <select>
+	                  <option value="역삼동">역삼동</option>
+	                </select>
+                </form>
                 <button id="filter" class="filter">필터</button>
               </div>
               <section id="filterList" class="filterList">

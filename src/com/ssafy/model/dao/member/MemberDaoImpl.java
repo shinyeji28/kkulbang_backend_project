@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.ssafy.model.dto.MemberDto;
+import com.ssafy.member.model.dto.MemberDto;
 import com.ssafy.util.DBUtil;
 
 public class MemberDaoImpl implements MemberDao {

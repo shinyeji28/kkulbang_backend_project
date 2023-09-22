@@ -1,4 +1,4 @@
-package com.ssafy.controller;
+package com.ssafy.member.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.ssafy.model.dto.MemberDto;
+import com.ssafy.member.model.dto.MemberDto;
 import com.ssafy.service.meber.MemberService;
 import com.ssafy.service.meber.MemberServiceImpl;
 

@@ -1,4 +1,4 @@
-package com.ssafy.model.dto;
+package com.ssafy.member.model.dto;
 
 public class MemberDto {
 	//"values ('ssafy1', '김싸피', '1234', 'email1@ssafy.com');";

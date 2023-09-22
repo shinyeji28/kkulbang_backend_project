@@ -3,17 +3,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" /> 
+    <%@ include file="/include/headerFooter.jsp" %>
+    <link href="${pageContext.request.contextPath}/assets/css/index.css" rel="stylesheet" />
+
   </head>
   <body>
     <%@ include file="/include/header.jsp" %>
@@ -31,7 +23,7 @@
               <h1>어떤 꿀방을 찾으세요?</h1>
               <div class="banner-tab">
                 <ul>
-                  <li><a href="./search.html">실시간 거래 조회</a></li>
+                  <li><a href="${pageContext.request.contextPath}/member?action=mvHouse">실시간 거래 조회</a></li>
                   <li><a>관심 지역 설정</a></li>
                   <!-- <li><a>탭1</a></li> -->
                 </ul>

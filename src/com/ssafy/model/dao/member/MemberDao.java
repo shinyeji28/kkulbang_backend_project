@@ -2,7 +2,8 @@ package com.ssafy.model.dao.member;
 
 import java.sql.SQLException;
 
-import com.ssafy.model.dto.MemberDto;
+import com.ssafy.member.model.dto.MemberDto;
+
 
 public interface MemberDao {
 

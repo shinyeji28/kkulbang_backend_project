@@ -2,7 +2,8 @@ package com.ssafy.service.meber;
 
 import java.sql.SQLException;
 
-import com.ssafy.model.dto.MemberDto;
+import com.ssafy.member.model.dto.MemberDto;
+
 
 public interface MemberService {
 
