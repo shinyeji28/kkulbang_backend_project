@@ -23,7 +23,7 @@
               <h1>어떤 꿀방을 찾으세요?</h1>
               <div class="banner-tab">
                 <ul>
-                  <li><a href="${pageContext.request.contextPath}/member?action=mvHouse">실시간 거래 조회</a></li>
+                  <li><a href="${pageContext.request.contextPath}/house?action=mvHouse">실시간 거래 조회</a></li>
                   <li><a>관심 지역 설정</a></li>
                   <!-- <li><a>탭1</a></li> -->
                 </ul>

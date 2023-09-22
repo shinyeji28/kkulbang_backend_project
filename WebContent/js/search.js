@@ -1,3 +1,5 @@
+const root = "/WhereIsMyHome";
+
 const aptTabtBtn = document.querySelector("#aptTabtBtn");
 aptTabtBtn.addEventListener("click", function () {});
 
@@ -30,3 +32,27 @@ filter.addEventListener("click", function () {
     filterIsOpen = true;
   }
 });
+
+function sidoOnChange(dongCode) {
+  console.log(dongCode);
+  let url = `${root}/house?action=gugun&sidoCode=${dongCode}`;
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => resultViewJSON(data));
+}
+function resultViewJSON(data) {
+  console.log("a");
+  console.log(data);
+  // if (data.cnt == 0) {
+  //   isUseId = true;
+  //   resultDiv.setAttribute("class", "mb-3 text-primary");
+  //   resultDiv.innerHTML =
+  //     "<span class='fw-bold'>" + data.checkid + "</span>은 사용할 수 있습니다.";
+  // } else {
+  //   isUseId = false;
+  //   resultDiv.setAttribute("class", "mb-3 text-warning");
+  //   resultDiv.innerHTML =
+  //     "<span class='fw-bold'>" + data.checkid + "</span>은 사용할 수 없습니다.";
+  // }
+}

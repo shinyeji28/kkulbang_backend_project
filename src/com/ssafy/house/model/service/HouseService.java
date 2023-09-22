@@ -9,8 +9,10 @@ import com.ssafy.house.model.dto.HouseInfoDto;
 
 public interface HouseService {
 	
-	List<DongCodeDto> getAreaList() throws SQLException;
-
+	List<DongCodeDto> getSidoList() throws SQLException;
+	
+	List<DongCodeDto> getGugunList() throws SQLException;
+		
 	List<DongCodeDto> dongCodeList(String dongName) throws SQLException;
 
 	List<HouseInfoDto> searchByDongCode(String dongCode) throws SQLException;

@@ -23,8 +23,12 @@ public class HouseServiceImpl implements HouseService {
 	}
 	
 	@Override
-	public List<DongCodeDto> getAreaList() throws SQLException {
-		return houseDaoImpl.getAreaList();
+	public List<DongCodeDto> getSidoList() throws SQLException {
+		return houseDaoImpl.getSidoList();
+	}
+	@Override
+	public List<DongCodeDto> getGugunList() throws SQLException {
+		return houseDaoImpl.getGugunList();
 	}
 	
 	@Override
@@ -41,7 +45,5 @@ public class HouseServiceImpl implements HouseService {
 	public List<HouseDealDto> searchByAptNo(long aptNo, int year, int month) throws SQLException {
 		return houseDaoImpl.searchByAptNo(aptNo, year, month);
 	}
-
-
 
 }

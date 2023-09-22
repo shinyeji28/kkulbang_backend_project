@@ -23,9 +23,10 @@ public class HouseDaoImpl implements HouseDao {
 
 	DBUtil dbUtil = DBUtil.getInstance();
 	
-	public List<DongCodeDto> getAreaList() throws SQLException {
-		String sql = "select *\r\n" + 
-				"from dongcode";
+	public List<DongCodeDto> getSidoList() throws SQLException {
+		String sql = "select distinct dongCode, sidoName\r\n" + 
+				"from dongCode\r\n" + 
+				"where gugunName is null;";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -37,10 +38,8 @@ public class HouseDaoImpl implements HouseDao {
 			while(rs.next()) {			
 				String dongCode = rs.getString("dongCode");
 				String sidoName = rs.getString("sidoName");
-				String gugunName = rs.getString("gugunName");
-				String dongName = rs.getString("dongName");
 
-				DongCodeDto dongCodeDto = new DongCodeDto(dongCode, sidoName, gugunName, dongName);
+				DongCodeDto dongCodeDto = new DongCodeDto(dongCode,sidoName,null,null);
 				list.add(dongCodeDto);
 			}
 			return list;
@@ -48,6 +47,33 @@ public class HouseDaoImpl implements HouseDao {
 			dbUtil.close(conn, pstmt, rs);
 		}
 	}	
+	
+	@Override
+	public List<DongCodeDto> getGugunList() throws SQLException {
+		String sql = "select dongCode, gugunName\r\n" + 
+				"from dongCode\r\n" + 
+				"where gugunName is not null and dongName is null;";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			List<DongCodeDto> list = new ArrayList<DongCodeDto>();
+			conn = dbUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {			
+				String dongCode = rs.getString("dongCode");
+				String gugunName = rs.getString("gugunName");
+
+				DongCodeDto dongCodeDto = new DongCodeDto(dongCode,null,gugunName,null);
+				list.add(dongCodeDto);
+			}
+			return list;
+		} finally {
+			dbUtil.close(conn, pstmt, rs);
+		}
+	}
+	
 	@Override
 	public List<DongCodeDto> dongCodeList(String dongName) throws SQLException {
 		String sql = "select dongCode, sidoName, gugunName\r\n" + 
@@ -154,5 +180,6 @@ public class HouseDaoImpl implements HouseDao {
 			dbUtil.close(conn, pstmt, rs);
 		}
 	}
+
 
 }

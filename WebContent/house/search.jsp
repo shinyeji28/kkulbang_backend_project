@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -56,14 +57,16 @@
 	            </form>
 	          	<form>
 	              <div class="user-condition">
-	                <select>
-	                  <option value="서울">서울</option>
+	                <select id="sidoSelect" onchange="sidoOnChange(this.value)">
+	                  <c:forEach var="sido" items="${sidoList}">
+	                  	<option value="${sido.dongCode}">${sido.sidoName}</option>
+	                  </c:forEach>
 	                </select>
 	                <select>
-	                  <option value="강남구">강남구</option>
+	                  	<option value="">군선택</option>
 	                </select>
 	                <select>
-	                  <option value="역삼동">역삼동</option>
+	                  	<option value="">동선택</option>
 	                </select>
                 </form>
                 <button id="filter" class="filter">필터</button>
