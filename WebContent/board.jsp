@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+	<a href="<%=request.getContextPath()%>/article?action=list">이동하기</a>
 </body>
 </html>
