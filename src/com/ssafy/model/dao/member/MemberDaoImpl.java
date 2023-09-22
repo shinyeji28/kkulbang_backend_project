@@ -9,7 +9,7 @@ import com.ssafy.model.dto.MemberDto;
 import com.ssafy.util.DBUtil;
 
 public class MemberDaoImpl implements MemberDao {
-	//
+	//싱글톤
 	private static MemberDao memberDao = new MemberDaoImpl();
 	private MemberDaoImpl() {}
 	public static MemberDao getInstance() {
@@ -44,13 +44,11 @@ public class MemberDaoImpl implements MemberDao {
 		}
 
 	}
-
 	@Override
-	public MemberDto login(String userId, String userPass) {//로그인:아이디 비번 받아서 일치하는지 여부만
-		
+	public MemberDto loginByEamil(MemberDto member) throws SQLException {//로그인:아이디 비번 받아서 일치하는지 여부만
 		String sql ="select *\r\n" + 
 				"from member\r\n" + 
-				"where user_id=?\r\n"+ 
+				"where user_email=?\r\n"+ 
 				"and user_password=?;";
 		Connection conn= null;
 		PreparedStatement pstmt=null;
@@ -58,9 +56,44 @@ public class MemberDaoImpl implements MemberDao {
 		try {
 			conn=dbUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);			
-			pstmt.setString(1, userId);
-			pstmt.setString(2, userPass);
+			pstmt.setString(1, member.getUserEmail());
+			pstmt.setString(2, member.getUserPass());
 			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String userName=rs.getString("user_name");
+				String userId=rs.getString("user_id");
+				String joinDate = rs.getString("join_date");
+				MemberDto memberDto = new MemberDto();
+				memberDto.setUserId(userId);
+				memberDto.setUserName(userName);
+				memberDto.setUserEmail(member.getUserEmail());
+				memberDto.setJoinDate(joinDate);
+				return memberDto;
+			}
+			return null;
+
+		}finally {
+			dbUtil.close(rs,pstmt,conn);
+		}
+
+		
+	}
+
+	@Override
+	public MemberDto login(MemberDto member) throws SQLException {//로그인:아이디 비번 받아서 일치하는지 여부만		
+		String sql ="select *\r\n" + 
+				"from member\r\n" + 
+				"where user_id=? and user_password=?";
+		Connection conn= null;
+		PreparedStatement pstmt=null;
+		ResultSet rs =null;
+		try {
+			conn=dbUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);			
+			pstmt.setString(1, member.getUserId());
+			pstmt.setString(2, member.getUserPass());			
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -68,21 +101,44 @@ public class MemberDaoImpl implements MemberDao {
 				String userEmail=rs.getString("user_email");
 				String joinDate = rs.getString("join_date");
 				MemberDto memberDto = new MemberDto();
-				memberDto.setUserId(userId);
+				memberDto.setUserId(member.getUserId());
 				memberDto.setUserName(userName);
 				memberDto.setUserEmail(userEmail);
 				memberDto.setJoinDate(joinDate);
 				return memberDto;
 			}
+			return null;
 
-
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}finally {
 			dbUtil.close(rs,pstmt,conn);
 		}
 
-		return null;
+		
+	}
+	@Override
+	public int findUser(MemberDto member) throws SQLException {//로그인:아이디 비번 받아서 일치하는지 여부만		
+		String sql ="select * from member\r\n" + 
+				"where user_id=? and user_name=? and user_email=?";
+		Connection conn= null;
+		PreparedStatement pstmt=null;
+		ResultSet rs =null;
+		try {
+			conn=dbUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);			
+			pstmt.setString(1, member.getUserId());
+			pstmt.setString(2, member.getUserName());		
+			pstmt.setString(3, member.getUserEmail());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {		
+				return rs.getInt("member_no");
+			}
+			return 0;
+
+		}finally {
+			dbUtil.close(rs,pstmt,conn);
+		}
+
+		
 	}
 
 	@Override

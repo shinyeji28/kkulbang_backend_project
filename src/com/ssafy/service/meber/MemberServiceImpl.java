@@ -1,12 +1,14 @@
 package com.ssafy.service.meber;
 
+import java.sql.SQLException;
+
 import com.ssafy.model.dao.member.MemberDaoImpl;
 import com.ssafy.model.dto.MemberDto;
 
 public class MemberServiceImpl implements MemberService {
-	//싱글톤
-	private MemberServiceImpl() {}
+	//싱글톤	
 	private static MemberService memberService = new MemberServiceImpl();
+	private MemberServiceImpl() {}
 	public static MemberService getMemberService() {
 		return memberService;
 	}
@@ -18,8 +20,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberDto login(String userId, String userPass) {
-		return MemberDaoImpl.getInstance().login(userId, userPass);
+	public MemberDto login(MemberDto memberDto) throws SQLException {
+		return MemberDaoImpl.getInstance().login(memberDto);
 
 	}
 
@@ -34,5 +36,12 @@ public class MemberServiceImpl implements MemberService {
 		MemberDaoImpl.getInstance().deleteMember(userId);
 
 	}
-
+	@Override
+	public MemberDto loginByEamil(MemberDto member) throws SQLException {
+		return MemberDaoImpl.getInstance().loginByEamil(member);
+	}
+	@Override
+	public int findUser(MemberDto member) throws SQLException{
+		return MemberDaoImpl.getInstance().findUser(member);
+	}
 }

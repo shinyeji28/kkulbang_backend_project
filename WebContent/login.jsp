@@ -15,8 +15,10 @@
     <title>Login Sample</title>
   </head>
   <body>
-    <%--<!-- header -->--%>
+  	<%--
+    <!-- header -->
     <%@ include file = "/include/header.jsp"%>
+    --%>
 
     <div class="container">
       <!-- Heading -->
@@ -25,21 +27,22 @@
       <!-- Links -->
       <ul class="links">
         <li>
-          <a href="#" id="signin">로그인</a>
+          <a href="#" id="signin" name="choiceLogin">로그인</a>
         </li>
         <li>
-          <a href="#" id="signup">회원가입</a>
+          <a href="#" id="signup"name="choiceLogup">회원가입</a>
         </li>
         <li>
-          <a href="#" id="reset">비밀번호 찾기</a>
+          <a href="#" id="reset"name="choiceFindPass">비밀번호 찾기</a>
         </li>
       </ul>
 
       <%--<!-- Form -->--%>
-      <form action="" method="post">
-        <!-- email input -->
+      <form action="${pageContext.request.contextPath}" method="post">
+      <input type="hidden" name="action" value="login">
+        <!-- id input -->
         <div class="first-input input__block first-input__block">
-          <input type="email" placeholder="Email" class="input" id="email" />
+          <input type="email" placeholder="Id" class="input" id="email" name="id"/>
         </div>
         <!-- password input -->
         <div class="input__block">
@@ -48,8 +51,14 @@
             placeholder="Password"
             class="input"
             id="password"
+            name="password"
           />
         </div>
+        
+        <div class="check">
+		<input type="checkbox" name="isRemember" ${empty cookie.rememberID?"":"checked"}>아이디 기억하기
+        </div>
+        
         <!-- repeat password input -->
         <div class="input__block">
           <input
@@ -60,12 +69,13 @@
           />
         </div>
         <!-- sign in button -->
-        <button class="signin__btn">Sign in</button>
+        <button type="submit"class="signin__btn">Sign in</button>
       </form>
       <!-- separator -->
       <div class="separator">
         <p>OR</p>
       </div>
+      <%--다른 로그인 방법--%>
       <nav>
         <%--<!-- naver button -->--%>
         <input
@@ -81,8 +91,11 @@
       </nav>
     </div>
     <!-- footer -->
+    <%--
     <%@ include file = "/include/header.jsp" %>
+    --%>
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/login.js"></script>
+   
   </body>
 </html>
 </html>
