@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.startup.SetAllPropertiesRule;
+
 import com.ssafy.member.model.dto.MemberDto;
-import com.ssafy.service.meber.MemberService;
-import com.ssafy.service.meber.MemberServiceImpl;
+import com.ssafy.member.model.service.MemberService;
+import com.ssafy.member.model.service.MemberServiceImpl;
 
 @WebServlet("/member")
 public class MemberController extends HttpServlet {
@@ -40,7 +42,9 @@ public class MemberController extends HttpServlet {
 			case "findUser":
 				findUser(request,response);
 				break;
-
+			case "regist"://회원가입
+				regist(request,response);
+				break;
 			default:
 				break;
 			}
@@ -49,6 +53,17 @@ public class MemberController extends HttpServlet {
 			e.printStackTrace();
 		}
 
+	}
+	private void regist(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		System.out.println("회원가입");
+		String id = request.getParameter("user_id");
+		String name = request.getParameter("user_name");
+		String password = request.getParameter("user_password");
+		String email = request.getParameter("user_email");
+		MemberDto member= new MemberDto(id,name,password,email,null);
+		memberService.registerMember(member);
+		
+		response.sendRedirect(request.getContextPath()+"/member?action=login");
 	}
 	private void findUser(HttpServletRequest request, HttpServletResponse response) throws SQLException {
 		System.out.println("비밀번호 찾기 요청");

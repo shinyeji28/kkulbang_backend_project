@@ -1,4 +1,4 @@
-package com.ssafy.model.dao.member;
+package com.ssafy.member.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

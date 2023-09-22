@@ -1,4 +1,4 @@
-package com.ssafy.service.meber;
+package com.ssafy.member.model.service;
 
 import java.sql.SQLException;
 
