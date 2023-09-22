@@ -1,0 +1,42 @@
+/* footer*/
+
+footer {
+  flex-shrink: 1;
+  min-height: 80px;
+  width: 100%;
+  margin: 0px auto;
+  overflow: hidden;
+  background: rgb(255, 255, 255);
+  color: rgb(153, 153, 153);
+  padding: 52px 0px 20px;
+  position: relative;
+  text-align: center;
+  vertical-align: baseline;
+  border: 0;
+  display: block;
+}
+
+.footer-content {
+  width: 600px;
+  margin: 0px auto;
+  position: relative;
+}
+
+.footer-nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-nav li {
+  display: inline;
+  margin-right: 20px;
+}
+
+.footer-nav a {
+  text-decoration: none;
+  color: black;
+}
+
+.footer-contact p {
+  margin: 5px 0;
+}

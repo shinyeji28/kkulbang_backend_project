@@ -10,28 +10,13 @@
       rel="stylesheet"
       type="text/css"
     />
-    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" /> 
     <title>Login Sample</title>
   </head>
   <body>
-    <!-- header -->
-    <header>
-      <div class="header-wrap">
-        <a class="logo" href="index.html">
-          <img src="/images/icon.png" alt="꿀방icon" />
-        </a>
-        <a class="logo" href="index.html"><h1 class="logo">꿀방</h1></a>
-
-        <ul>
-          <li><button class="header-btn">어서오세요</button></li>
-          <li>
-            <button class="header-btn">
-              <a href="./login.html">로그인</a>
-            </button>
-          </li>
-        </ul>
-      </div>
-    </header>
+	<%@ include file="/include/header.jsp" %>
 
     <div class="container">
       <!-- Heading -->
@@ -85,32 +70,21 @@
         <!-- naver button -->
         <input
           type="image"
-          src="/images/naver.png"
+          src="${pageContext.request.contextPath}/assets/images/naver.png"
           height="45px"
           width="183px"
         />
         <!-- kakao button -->
-        <input type="image" src="/images/kakao.png" />
+        <input type="image" src="${pageContext.request.contextPath}/assets/images/kakao.png" />
         <!-- google button -->
-        <input type="image" src="/images/goggle_login.png" />
+        <input type="image" src="${pageContext.request.contextPath}/assets/images/goggle_login.png" />
       </nav>
     </div>
-    <!-- footer -->
-    <footer>
-      <div class="footer-content">
-        <div class="footer-nav">
-          <ul>
-            <li><a href="#">이용약관</a></li>
-            <li><a href="#">개인정보처리방침</a></li>
-            <li>고객센터: 123-4567</li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2023 대전6반</p>
-      </div>
-    </footer>
-    <script type="text/javascript" src="../js/login.js"></script>
+    
+    <%@ include file="/include/footer.jsp" %>
+    
+    
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/login.js"></script>
   </body>
 </html>
 </html>
