@@ -329,6 +329,7 @@ header {
   border: 0 solid black;
   box-sizing: border-box;
   display: inline;
+  width : 
   font: 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
   line-height: inherit;
@@ -351,7 +352,7 @@ header {
 
 .newHead {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   border: 0 solid rgba(225, 225, 225, 1);
   border-bottom-width: 1px;
   position: relative;

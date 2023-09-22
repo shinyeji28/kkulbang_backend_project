@@ -46,6 +46,7 @@
           <div id="newWrapper">
             <div class="newHead">
               <div class="newsHeadStyle">공지사항</div>
+              <div><a href="<%=request.getContextPath()%>/article?action=list">더보기</a></div>
             </div>
 
             <div id="newsContentWrapper">

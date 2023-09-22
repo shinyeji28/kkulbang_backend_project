@@ -9,7 +9,6 @@ window.onload = function () {
   //----------- sign up ---------------------
   signup.addEventListener("click", function (e) {
     e.preventDefault();
-
     signup.style.opacity = "1";
     signin.style.opacity = "0.6";
     first_input.classList.remove("first-input__block");
@@ -17,6 +16,10 @@ window.onload = function () {
     hidden_input.style.opacity = "1";
     hidden_input.style.display = "block";
     signin_btn.innerText = "Sign up";
+    let check = document.querySelector(".check");
+    if (check.style.display !== "none") {
+      check.style.display = "none";
+    }
   });
 
   //----------- sign in ---------------------
@@ -29,5 +32,9 @@ window.onload = function () {
     hidden_input.style.opacity = "0";
     hidden_input.style.display = "none";
     signin_btn.innerText = "Sign in";
+    let check = document.querySelector(".check");
+    if (check.style.display == "none") {
+      check.style.display = "block";
+    }
   });
 };

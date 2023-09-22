@@ -10,6 +10,13 @@ public class MemberDto {
 	
 	public MemberDto() {}
 	
+	public MemberDto(String userId, String userName, String userPass, String userEmail) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.userPass = userPass;
+		this.userEmail = userEmail;
+	}
 	public MemberDto(String userId, String userName, String userPass, String userEmail, String joinDate) {
 		super();
 		this.userId = userId;
