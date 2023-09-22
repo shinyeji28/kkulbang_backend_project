@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,13 +11,12 @@
       rel="stylesheet"
       type="text/css"
     />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" /> 
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/login.css" />
     <title>Login Sample</title>
   </head>
   <body>
-	<%@ include file="/include/header.jsp" %>
+    <%--<!-- header -->--%>
+    <%@ include file = "/include/header.jsp"%>
 
     <div class="container">
       <!-- Heading -->
@@ -35,7 +35,7 @@
         </li>
       </ul>
 
-      <!-- Form -->
+      <%--<!-- Form -->--%>
       <form action="" method="post">
         <!-- email input -->
         <div class="first-input input__block first-input__block">
@@ -67,24 +67,22 @@
         <p>OR</p>
       </div>
       <nav>
-        <!-- naver button -->
+        <%--<!-- naver button -->--%>
         <input
           type="image"
-          src="${pageContext.request.contextPath}/assets/images/naver.png"
+          src="${pageContext.request.contextPath }/assets/images/naver.png"
           height="45px"
           width="183px"
         />
         <!-- kakao button -->
-        <input type="image" src="${pageContext.request.contextPath}/assets/images/kakao.png" />
+        <input type="image" src="${pageContext.request.contextPath }/assets/images/kakao.png" />
         <!-- google button -->
-        <input type="image" src="${pageContext.request.contextPath}/assets/images/goggle_login.png" />
+        <input type="image" src="${pageContext.request.contextPath }/assets/images/goggle_login.png" />
       </nav>
     </div>
-    
-    <%@ include file="/include/footer.jsp" %>
-    
-    
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/login.js"></script>
+    <!-- footer -->
+    <%@ include file = "/include/header.jsp" %>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/login.js"></script>
   </body>
 </html>
 </html>
