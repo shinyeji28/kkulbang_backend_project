@@ -4,14 +4,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/login.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/assets/css/login.css" />
+    <%@ include file="/include/headerFooter.jsp" %>
     <title>Login Sample</title>
   </head>
   <body>
@@ -81,7 +75,7 @@
       </nav>
     </div>
     <!-- footer -->
-    <%@ include file = "/include/header.jsp" %>
+    <%@ include file = "/include/footer.jsp" %>
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/login.js"></script>
   </body>
 </html>
