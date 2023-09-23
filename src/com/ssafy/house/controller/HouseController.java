@@ -47,10 +47,9 @@ public class HouseController extends HttpServlet {
 
 	private void getGugunList(HttpServletRequest request, HttpServletResponse response) throws StreamWriteException, DatabindException, IOException, SQLException {
 		System.out.println("구군 리스트 받기");
-		System.out.println(request.getAttribute("sidoCode"));
+		String dongCode = (String) request.getParameter("dongCode");
 		// 구군 데이터 받아오기
-		List<DongCodeDto> gugunList = houseService.getSidoList();
-		
+		List<DongCodeDto> gugunList = houseService.getGugunList(dongCode);
 		// jackson 넘기기 
 		ObjectMapper mapper = new ObjectMapper();
 		

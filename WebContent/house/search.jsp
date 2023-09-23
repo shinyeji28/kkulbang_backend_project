@@ -62,11 +62,11 @@
 	                  	<option value="${sido.dongCode}">${sido.sidoName}</option>
 	                  </c:forEach>
 	                </select>
-	                <select>
-	                  	<option value="">군선택</option>
+	                <select id="gugunSelect">
+	                  	<option>구군 선택</option>
 	                </select>
-	                <select>
-	                  	<option value="">동선택</option>
+	                <select id="dongSelect">
+	                  	<option>동 선택</option>
 	                </select>
                 </form>
                 <button id="filter" class="filter">필터</button>

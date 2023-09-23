@@ -11,7 +11,7 @@ public interface HouseService {
 	
 	List<DongCodeDto> getSidoList() throws SQLException;
 	
-	List<DongCodeDto> getGugunList() throws SQLException;
+	List<DongCodeDto> getGugunList(String dongCode) throws SQLException;
 		
 	List<DongCodeDto> dongCodeList(String dongName) throws SQLException;
 

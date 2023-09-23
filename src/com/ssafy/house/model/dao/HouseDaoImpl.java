@@ -24,8 +24,8 @@ public class HouseDaoImpl implements HouseDao {
 	DBUtil dbUtil = DBUtil.getInstance();
 	
 	public List<DongCodeDto> getSidoList() throws SQLException {
-		String sql = "select distinct dongCode, sidoName\r\n" + 
-				"from dongCode\r\n" + 
+		String sql = "select dongCode, sidoName\r\n" + 
+				"from dongcode\r\n" + 
 				"where gugunName is null;";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -49,10 +49,12 @@ public class HouseDaoImpl implements HouseDao {
 	}	
 	
 	@Override
-	public List<DongCodeDto> getGugunList() throws SQLException {
-		String sql = "select dongCode, gugunName\r\n" + 
-				"from dongCode\r\n" + 
-				"where gugunName is not null and dongName is null;";
+	public List<DongCodeDto> getGugunList(String dongCode) throws SQLException {
+		String code = dongCode.substring(0,2);
+		String sql = "select dongCode, gugunName\r\n"
+				+ "from dongcode\r\n"
+				+ "where dongCode like concat(?,'%') and dongName is null;";
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -60,12 +62,13 @@ public class HouseDaoImpl implements HouseDao {
 			List<DongCodeDto> list = new ArrayList<DongCodeDto>();
 			conn = dbUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, code);			
 			rs = pstmt.executeQuery();
 			while(rs.next()) {			
-				String dongCode = rs.getString("dongCode");
+				String dongCode1 = rs.getString("dongCode");
 				String gugunName = rs.getString("gugunName");
 
-				DongCodeDto dongCodeDto = new DongCodeDto(dongCode,null,gugunName,null);
+				DongCodeDto dongCodeDto = new DongCodeDto(dongCode1,null,gugunName,null);
 				list.add(dongCodeDto);
 			}
 			return list;

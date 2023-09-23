@@ -34,16 +34,23 @@ filter.addEventListener("click", function () {
 });
 
 function sidoOnChange(dongCode) {
-  console.log(dongCode);
-  let url = `${root}/house?action=gugun&sidoCode=${dongCode}`;
-
+  let url = `${root}/house?action=gugun&dongCode=${dongCode}`;
   fetch(url)
     .then((response) => response.json())
     .then((data) => resultViewJSON(data));
-}
-function resultViewJSON(data) {
-  console.log("a");
-  console.log(data);
+} 
+function resultViewJSON(datas) {
+  console.log(datas);
+  let gugunSelect = document.querySelector("#gugunSelect");
+  gugunSelect.innerHTML = "";
+  datas.forEach(function(data){
+    gugunSelect.innerHTML += `<option value=${data.dongcode}>${data.gugunName}</option>`;
+  })
+
+  
+  
+	  
+
   // if (data.cnt == 0) {
   //   isUseId = true;
   //   resultDiv.setAttribute("class", "mb-3 text-primary");
