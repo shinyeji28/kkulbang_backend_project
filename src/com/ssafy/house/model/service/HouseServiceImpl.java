@@ -32,8 +32,8 @@ public class HouseServiceImpl implements HouseService {
 	}
 	
 	@Override
-	public List<DongCodeDto> dongCodeList(String dongName) throws SQLException {
-		return houseDaoImpl.dongCodeList(dongName);
+	public List<DongCodeDto> getDongList(String dongCode) throws SQLException {
+		return houseDaoImpl.getDongList(dongCode);
 	}
 
 	@Override

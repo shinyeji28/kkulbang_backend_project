@@ -78,9 +78,14 @@ public class HouseDaoImpl implements HouseDao {
 	}
 	
 	@Override
-	public List<DongCodeDto> dongCodeList(String dongName) throws SQLException {
-		String sql = "select dongCode, sidoName, gugunName\r\n" + 
-				"from dongcode where dongName like concat('%',?,'%');";
+	public List<DongCodeDto> getDongList(String dongCode) throws SQLException {
+		System.out.println(dongCode);
+		
+		String code = dongCode.substring(0,4);
+
+		String sql = "select dongCode, dongName\r\n"
+				+ "from dongcode\r\n"
+				+ "where dongCode like concat(?,'%');";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -88,14 +93,13 @@ public class HouseDaoImpl implements HouseDao {
 			List<DongCodeDto> list = new ArrayList<DongCodeDto>();
 			conn = dbUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,dongName);
+			pstmt.setString(1,code);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {				
-				String dongCode = rs.getString("dongCode");
-				String sidoName = rs.getString("sidoName");
-				String gugunName = rs.getString("gugunName");
-
-				DongCodeDto dongCodeDto = new DongCodeDto(dongCode, sidoName, gugunName, dongName);
+				String dongCode1 = rs.getString("dongCode");
+				String dongName = rs.getString("dongName");
+				System.out.println(dongName);
+				DongCodeDto dongCodeDto = new DongCodeDto(dongCode1, null, null, dongName);
 				list.add(dongCodeDto);
 			}
 			return list;
@@ -105,6 +109,7 @@ public class HouseDaoImpl implements HouseDao {
 	}
 
 	@Override
+	
 	public List<HouseInfoDto> searchByDongCode(String dongCode) throws SQLException {
 		String sql = "select * from houseinfo where dongCode = ?";
 		Connection conn = null;

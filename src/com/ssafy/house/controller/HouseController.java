@@ -14,6 +14,7 @@ import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.house.model.dto.DongCodeDto;
+import com.ssafy.house.model.dto.HouseInfoDto;
 import com.ssafy.house.model.service.HouseServiceImpl;
 
 
@@ -35,6 +36,12 @@ public class HouseController extends HttpServlet {
 			case "gugun":
 				getGugunList(request,response);
 				break;
+			case "dong":
+				getDongList(request,response);
+				break;
+			case "aptInfo":
+				getAptInfoList(request,response);
+				break;
 			case "searchKeyword":
 				
 				break;
@@ -43,6 +50,30 @@ public class HouseController extends HttpServlet {
 			e.getStackTrace();
 		}
 	
+	}
+
+	private void getAptInfoList(HttpServletRequest request, HttpServletResponse response) throws StreamWriteException, DatabindException, IOException, SQLException {
+		System.out.println("아파트 정보 받기");
+		String dongCode = (String) request.getParameter("dongCode");
+		// 동 데이터 받아오기
+		List<HouseInfoDto> aptList = houseService.searchByDongCode(dongCode);
+		// jackson 넘기기 
+		ObjectMapper mapper = new ObjectMapper();
+		
+		response.setContentType("application/json;charset=utf-8");
+		mapper.writeValue(response.getWriter(), aptList);
+	}
+
+	private void getDongList(HttpServletRequest request, HttpServletResponse response) throws SQLException, StreamWriteException, DatabindException, IOException {
+		System.out.println("동 리스트 받기");
+		String dongCode = (String) request.getParameter("dongCode");
+		// 동 데이터 받아오기
+		List<DongCodeDto> dongList = houseService.getDongList(dongCode);
+		// jackson 넘기기 
+		ObjectMapper mapper = new ObjectMapper();
+		
+		response.setContentType("application/json;charset=utf-8");
+		mapper.writeValue(response.getWriter(), dongList);
 	}
 
 	private void getGugunList(HttpServletRequest request, HttpServletResponse response) throws StreamWriteException, DatabindException, IOException, SQLException {

@@ -173,7 +173,7 @@
         </div>
       </div>
       <!--카드돌아가는 부분  END-->
-      <script type="text/javascript" src="${pageContext.request.contextPath}/js/home.js"></script>
+      <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/home.js"></script>
     </section>
     
     <%@ include file="/include/footer.jsp" %>

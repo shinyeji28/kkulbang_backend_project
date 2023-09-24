@@ -34,11 +34,12 @@
       <section class="show-container">
         <section class="tab">
           <ul>
-            <li><button id="aptTabtBtn">아파트 실거래</button></li>
-            <li><button id="houseTabgBtn">빌라 실거래</button></li>
+            <li><button id="aptTabtBtn">아파트 정보</button></li>
+            <li><button id="aptDetailBtn">실거래 상세 조회</button></li>
             <li><button id="pickBtn">관심 지역 정보</button></li>
+            <!-- <li><button id="houseTabgBtn">빌라 실거래</button></li>
             <li><button id="aroundBtn">주변 탐방 정보</button></li>
-            <li><button id="envBtn">환경 정보</button></li>
+            <li><button id="envBtn">환경 정보</button></li> -->
           </ul>
         </section>
         <div class="show-wrap">
@@ -62,10 +63,10 @@
 	                  	<option value="${sido.dongCode}">${sido.sidoName}</option>
 	                  </c:forEach>
 	                </select>
-	                <select id="gugunSelect">
+	                <select id="gugunSelect" onchange="gugunOnChange(this.value)">
 	                  	<option>구군 선택</option>
 	                </select>
-	                <select id="dongSelect">
+	                <select id="dongSelect" onchange="dongOnChange(this.value)">
 	                  	<option>동 선택</option>
 	                </select>
                 </form>
@@ -95,56 +96,9 @@
               </section>
             </section>
             <section class="nav-right">
-              <div class="nav-right-wrap">
-                <ul>
-                  <li>카카오스페이스탓원</li>
-                  <li>제주특별자치도 제주시 아라동 첨단로 242</li>
-                  <li>거래 금액 : 60,000</li>
-                  <li>건축년도 : 2007</li>
-                  <li>전용면적 : 149.95</li>
-                </ul>
-                <ul>
-                  <li>생태연못</li>
-                  <li>제주특별자치도 제주시 5·16로 2596[용강동 산14-1]</li>
-                  <li>거래 금액 : 120,000</li>
-                  <li>건축년도</li>
-                  <li>전용면적 : 3000.95</li>
-                </ul>
-                <ul>
-                  <li>제주스페이스닷키즈어린이집</li>
-                  <li>제주특별자치도 제주시 첨단로 216-18</li>
-                  <li>거래 금액 : 70,000</li>
-                  <li>건축년도 : 2010</li>
-                  <li>전용면적 : 87.95</li>
-                </ul>
-                <ul>
-                  <li>롯데미도파광화문빌딩</li>
-                  <li>당주동 232 - 10</li>
-                  <li>거래 금액 : 60,000</li>
-                  <li>건축년도</li>
-                  <li>전용면적 : 149.95</li>
-                </ul>
-                <ul>
-                  <li>나눔건설사업관리본부</li>
-                  <li>제주특별자치도 제주시 첨단로 241</li>
-                  <li>거래 금액 : 120,000</li>
-                  <li>건축년도</li>
-                  <li>전용면적 : 149.95</li>
-                </ul>
-                <ul>
-                  <li>롯데미도파광화문빌딩</li>
-                  <li>당주동 232 - 10</li>
-                  <li>거래 금액 : 60,000</li>
-                  <li>건축년도</li>
-                  <li>전용면적 : 149.95</li>
-                </ul>
-                <ul>
-                  <li>롯데미도파광화문빌딩</li>
-                  <li>당주동 232 - 10</li>
-                  <li>거래 금액 : 60,000</li>
-                  <li>건축년도</li>
-                  <li>전용면적 : 149.95</li>
-                </ul>
+              <div id="aptListDiv" class="nav-right-wrap">
+               
+                
               </div>
             </section>
             <div id="map" class="map" style="width: 100%; height: 70vh"></div>
@@ -158,7 +112,7 @@
       type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7859d560b2d7fe4dfec5c4ce888fb58b"
     ></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/map.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/search.js"></script>
+  <!--   <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/map.js"></script> -->
+    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/search.js"></script>
   </body>
 </html>

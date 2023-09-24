@@ -13,7 +13,7 @@ public interface HouseService {
 	
 	List<DongCodeDto> getGugunList(String dongCode) throws SQLException;
 		
-	List<DongCodeDto> dongCodeList(String dongName) throws SQLException;
+	List<DongCodeDto> getDongList(String donCode) throws SQLException;
 
 	List<HouseInfoDto> searchByDongCode(String dongCode) throws SQLException;
 
