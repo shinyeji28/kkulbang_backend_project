@@ -10,8 +10,8 @@ public class DBUtil {
 	
 	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://localhost:3306/whereismyhome?serverTimezone=UTC";
-	private static final String DB_ID = "shinyeji";
-	private static final String DB_PWD = "shinyeji";
+	private static final String DB_ID = "ssafy";
+	private static final String DB_PWD = "ssafy";
 	
 	private static DBUtil instance = new DBUtil();
 

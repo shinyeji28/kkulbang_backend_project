@@ -14,7 +14,7 @@ var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리
 var positions = [];
 
 // 지도에 여러개 마킹하기
-function marking(a){
+function marking(){
 	// 마커 이미지의 이미지 주소입니다
 	var imageSrc =
 	  "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
@@ -128,6 +128,6 @@ function aptListParsing(datas) {
   })
   
   positions = markList;
-  marking("dd");
+  marking();
   panTo(firstDataPos[0],firstDataPos[1]);
 }
