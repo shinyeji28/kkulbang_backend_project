@@ -11,7 +11,7 @@
       rel="stylesheet"
       type="text/css"
     />
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/login.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/assets/css/login.css" />
     <title>Login Sample</title>
   </head>
   <body>
@@ -94,7 +94,7 @@
     <%--
     <%@ include file = "/include/header.jsp" %>
     --%>
-    <script type="text/javascript" src="${pageContext.request.contextPath }/js/login.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/login.js"></script>
    
   </body>
 </html>

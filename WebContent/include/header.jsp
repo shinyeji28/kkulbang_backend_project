@@ -10,7 +10,7 @@
       <li><button class="header-btn">어서오세요</button></li>
       <li>
         <button class="header-btn">
-          <a href="./login.html">로그인</a>
+          <a href="${pageContext.request.contextPath}/member?action=mvLogin">로그인</a>
         </button>
       </li>
     </ul>
