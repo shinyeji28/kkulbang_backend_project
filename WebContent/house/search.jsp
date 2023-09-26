@@ -34,15 +34,15 @@
       <section class="show-container">
         <section class="tab">
           <ul>
-            <li><button id="aptTabtBtn">아파트 정보</button></li>
-            <li><button id="aptDetailBtn">실거래 상세 조회</button></li>
+            <li><button id="aptTabBtn">아파트 정보</button></li>
+            <li><button id="dealTapBtn">실거래 상세 조회</button></li>
             <li><button id="pickBtn">관심 지역 정보</button></li>
             <!-- <li><button id="houseTabgBtn">빌라 실거래</button></li>
             <li><button id="aroundBtn">주변 탐방 정보</button></li>
             <li><button id="envBtn">환경 정보</button></li> -->
           </ul>
         </section>
-        <div class="show-wrap">
+        <div id="aptSection" class="show-wrap">
           <div class="show-wrap2">
             <section id="nav-left" class="nav-left">
             
@@ -95,7 +95,7 @@
                 <div></div>
               </section>
             </section>
-            <section class="nav-right">
+            <section id="nav-right" class="nav-right">
               <div id="aptListDiv" class="nav-right-wrap">
                
                 
@@ -103,6 +103,9 @@
             </section>
             <div id="map" class="map" style="width: 100%; height: 70vh"></div>
           </div>
+        </div>
+        <div id="dealSection" class="show-wrap">
+        	실시간 거래 페이지 입니다
         </div>
       </section>
     </main>

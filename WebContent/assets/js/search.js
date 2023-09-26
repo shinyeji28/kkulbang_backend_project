@@ -53,13 +53,27 @@ function panTo(lat, lng) {
 
 
 
+
+const aptTabtBtn = document.querySelector("#aptTabBtn");
+aptTabtBtn.addEventListener("click", function () {
+    let dealSection = document.querySelector("#dealSection");
+	dealSection.setAttribute("style","display:none");
+	let aptSection = document.querySelector("#aptSection");
+	aptSection.setAttribute("style","display:block");
+	aptSection.setAttribute("style","scrollTop: 0");
+	location.href="#aptSection";
+});
+
+const dealTapBtn = document.querySelector("#dealTapBtn");
+dealTapBtn.addEventListener("click", function () {
+		let aptSection = document.querySelector("#aptSection");
+	aptSection.setAttribute("style","display:none");
+	let dealSection = document.querySelector("#dealSection");
+	dealSection.setAttribute("style","display:block");
+	location.href="#dealSection";
+});
+
 /*
-const aptTabtBtn = document.querySelector("#aptTabtBtn");
-aptTabtBtn.addEventListener("click", function () {});
-
-const houseTabgBtn = document.querySelector("#aptTabtBtn");
-aptTabtBtn.addEventListener("click", function () {});
-
 const pickBtn = document.querySelector("#pickBtn");
 pickBtn.addEventListener("click", function () {});
 
@@ -107,7 +121,6 @@ function dongOnChange(dongCode) {
     .then((data) => aptListParsing(data));
 } 
 function aptListParsing(datas) {
-  console.log(datas)
   let aptListDiv = document.querySelector("#aptListDiv");
   aptListDiv.innerHTML = "";
   let markList = [];
@@ -115,7 +128,7 @@ function aptListParsing(datas) {
   datas.forEach(function(data){
     firstDataPos= [data.lat, data.lng];
     aptListDiv.innerHTML += ` 
-    <ul id=${data.aptCode}>
+    <ul onclick=aptDeal(${data.aptCode})>
       <li><h3>${data.apartmentName}<h3></li>
       <br>  
       <li>${data.dong} ${data.roadName} ${data.roadNameBonbun.replace(/(^0+)/,"")}</li>
@@ -126,8 +139,15 @@ function aptListParsing(datas) {
       title: data.apartmentName,
       latlng: new kakao.maps.LatLng(data.lat, data.lng)});
   })
-  
+	
+  let navRight = document.querySelector("#nav-right");
+  navRight.setAttribute("style", "position: absolute;");
+
   positions = markList;
   marking();
   panTo(firstDataPos[0],firstDataPos[1]);
+}
+
+function aptDeal(aptCode){
+	
 }
