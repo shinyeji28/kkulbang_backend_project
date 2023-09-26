@@ -30,10 +30,10 @@
           <a href="#" id="signin" name="choiceLogin">로그인</a>
         </li>
         <li>
-          <a href="#" id="signup"name="choiceLogup">회원가입</a>
+          <a href="#" id="signup" name="choiceLogup">회원가입</a>
         </li>
         <li>
-          <a href="#" id="reset"name="choiceFindPass">비밀번호 찾기</a>
+          <a href="#" id="reset" name="choiceFindPass">비밀번호 찾기</a>
         </li>
       </ul>
 
@@ -42,8 +42,18 @@
       <input type="hidden" name="action" value="login">
         <!-- id input -->
         <div class="first-input input__block first-input__block">
-          <input type="email" placeholder="Id" class="input" id="email" name="id"/>
+          <input type="text" placeholder="ID" class="input" id="input_id" name="input_id"/>
         </div>
+        <!-- name input -->
+        <div class="input__block">
+          <input
+            type="text"
+            placeholder="Name"
+            class="input"
+            id="input_name"
+            name="input_name"
+          />
+        </div>        
         <!-- password input -->
         <div class="input__block">
           <input
@@ -54,7 +64,7 @@
             name="password"
           />
         </div>
-        
+        <!-- id checkbox -->
         <div class="check">
 		<input type="checkbox" name="isRemember" ${empty cookie.rememberID?"":"checked"}>아이디 기억하기
         </div>
@@ -66,6 +76,7 @@
             placeholder="Repeat password"
             class="input repeat__password"
             id="repeat__password"
+            name="repeatPassword"
           />
         </div>
         <!-- sign in button -->
@@ -97,5 +108,4 @@
     <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/login.js"></script>
    
   </body>
-</html>
 </html>

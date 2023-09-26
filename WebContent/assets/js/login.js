@@ -5,6 +5,9 @@ window.onload = function () {
   let first_input = document.querySelector(".first-input");
   let hidden_input = document.querySelector("#repeat__password");
   let signin_btn = document.querySelector(".signin__btn");
+  let check = document.querySelector(".check");
+  let name = document.querySelector("#input_name");
+  console.log("name", name);
 
   //----------- sign up ---------------------
   signup.addEventListener("click", function (e) {
@@ -16,7 +19,7 @@ window.onload = function () {
     hidden_input.style.opacity = "1";
     hidden_input.style.display = "block";
     signin_btn.innerText = "Sign up";
-    let check = document.querySelector(".check");
+    name.style.display = "block";
     if (check.style.display !== "none") {
       check.style.display = "none";
     }
@@ -32,7 +35,7 @@ window.onload = function () {
     hidden_input.style.opacity = "0";
     hidden_input.style.display = "none";
     signin_btn.innerText = "Sign in";
-    let check = document.querySelector(".check");
+    name.style.display = "none";
     if (check.style.display == "none") {
       check.style.display = "block";
     }
