@@ -79,7 +79,6 @@ public class HouseDaoImpl implements HouseDao {
 	
 	@Override
 	public List<DongCodeDto> getDongList(String dongCode) throws SQLException {
-		System.out.println(dongCode);
 		
 		String code = dongCode.substring(0,4);
 
@@ -98,7 +97,6 @@ public class HouseDaoImpl implements HouseDao {
 			while(rs.next()) {				
 				String dongCode1 = rs.getString("dongCode");
 				String dongName = rs.getString("dongName");
-				System.out.println(dongName);
 				DongCodeDto dongCodeDto = new DongCodeDto(dongCode1, null, null, dongName);
 				list.add(dongCodeDto);
 			}

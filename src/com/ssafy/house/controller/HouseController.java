@@ -90,7 +90,6 @@ public class HouseController extends HttpServlet {
 
 	private void mvHouse(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
 		System.out.println("house페이지 이동 수신");
-		System.out.println("aaa");
 		// 시도 데이터 받아오기
 		List<DongCodeDto> sidoList = houseService.getSidoList();
 		// 지역 리스트 데이터 저장
