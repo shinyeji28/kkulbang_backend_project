@@ -21,5 +21,7 @@ public interface HouseDao {
 	List<HouseInfoDto> searchByDongCode(String dongCode) throws SQLException;
 	// 아파트 번호로 검색
 	List<HouseDealDto> searchByAptNo(long aptNo, int year, int month) throws SQLException;
-	
+	// 아파트 거래 검색
+	List<HouseDealDto> getAptDealInfo(long aptCode) throws SQLException;
+
 }

@@ -18,5 +18,6 @@ public interface HouseService {
 	List<HouseInfoDto> searchByDongCode(String dongCode) throws SQLException;
 
 	List<HouseDealDto> searchByAptNo(long aptNo, int year, int month) throws SQLException;
-
+	
+	List<HouseDealDto> getAptDealInfo(long aptCode) throws SQLException;
 }

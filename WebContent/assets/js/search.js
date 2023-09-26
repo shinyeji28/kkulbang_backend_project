@@ -51,28 +51,35 @@ function panTo(lat, lng) {
 // mapPath = '<script type="text/javascript" src="' +root+ '/assets/js/map.js"></script>'
 // document.write(mapPath);
 
-
-
-
-const aptTabtBtn = document.querySelector("#aptTabBtn");
-aptTabtBtn.addEventListener("click", function () {
-    let dealSection = document.querySelector("#dealSection");
-	dealSection.setAttribute("style","display:none");
-	let aptSection = document.querySelector("#aptSection");
-	aptSection.setAttribute("style","display:block");
-	aptSection.setAttribute("style","scrollTop: 0");
-	location.href="#aptSection";
-});
-
+const aptSection = document.querySelector("#aptSection");
+const dealSection = document.querySelector("#dealSection");
+const aptTabBtn = document.querySelector("#aptTabBtn");
 const dealTapBtn = document.querySelector("#dealTapBtn");
-dealTapBtn.addEventListener("click", function () {
-		let aptSection = document.querySelector("#aptSection");
-	aptSection.setAttribute("style","display:none");
-	let dealSection = document.querySelector("#dealSection");
-	dealSection.setAttribute("style","display:block");
-	location.href="#dealSection";
+const main = document.querySelector("main");
+dealSection.setAttribute("style","display:none");
+aptTabBtn.setAttribute("class","activeTap");
+
+aptTabBtn.addEventListener("click", function () {
+	dealSection.setAttribute("style","display:none");
+	aptSection.setAttribute("style","display:block");
+
+  aptTabBtn.setAttribute("class","activeTap");
+  dealTapBtn.removeAttribute("class","activeTap");
+	// document.documentElement.scrollTop = 0;
+
 });
 
+dealTapBtn.addEventListener("click", function () {
+  clickDealTap();
+});
+function clickDealTap(){
+	aptSection.setAttribute("style","display:none");
+	dealSection.setAttribute("style","display:block");
+  
+  aptTabBtn.removeAttribute("class","activeTap");
+  dealTapBtn.setAttribute("class","activeTap");
+	// document.documentElement.scrollTop = 0;
+}
 /*
 const pickBtn = document.querySelector("#pickBtn");
 pickBtn.addEventListener("click", function () {});
@@ -94,10 +101,12 @@ function sidoOnChange(dongCode) {
 } 
 function gugunListParsing(datas) {
   let gugunSelect = document.querySelector("#gugunSelect");
-  gugunSelect.innerHTML = "";
+  gugunSelect.innerHTML = `<option selected disabled>--- 구군 선택 ---</option>`;
   datas.forEach(function(data){
     gugunSelect.innerHTML += `<option value=${data.dongCode}>${data.gugunName}</option>`;
   })
+  let dongSelect = document.querySelector("#dongSelect");
+  dongSelect.innerHTML = `<option selected disabled>--- 동 선택 ---</option>`;
 }
   // 동 리스트 요청 및 출력
 function gugunOnChange(dongCode) {
@@ -108,7 +117,7 @@ function gugunOnChange(dongCode) {
 } 
 function dongListParsing(datas) {
   let dongSelect = document.querySelector("#dongSelect");
-  dongSelect.innerHTML = "";
+  dongSelect.innerHTML = `<option selected disabled>--- 동 선택 ---</option>`;
   datas.forEach(function(data){
     dongSelect.innerHTML += `<option value=${data.dongCode}>${data.dongName}</option>`;
   })
@@ -122,7 +131,6 @@ function dongOnChange(dongCode) {
 } 
 function aptListParsing(datas) {
   let aptListDiv = document.querySelector("#aptListDiv");
-  aptListDiv.innerHTML = "";
   let markList = [];
   let firstDataPos = []; // 첫번째 데이터의 위도와 경도
   datas.forEach(function(data){
@@ -148,6 +156,32 @@ function aptListParsing(datas) {
   panTo(firstDataPos[0],firstDataPos[1]);
 }
 
+// 아파트 거래 정보 
 function aptDeal(aptCode){
-	
+  let url = `${root}/house?action=deal&aptCode=${aptCode}`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {dealListParsing(data)});
+}
+function dealListParsing(datas){
+  let dealData = document.querySelector("#dealData");
+  dealData.innerHTML = `	
+    <tr>
+      <th>거래 금액</th>	
+      <th>면적</th>	
+      <th>거래 층</th>
+      <th>거래 날짜</th>			
+    </tr>
+  `;
+  datas.forEach(function(data){
+    dealData.innerHTML += `
+      <tr>
+        <td>${data.dealAmount}<td>
+        <td>${data.area}<td>
+        <td>${data.floor}<td>
+        <td>${data.dealYear}.${data.dealMonth}.${data.dealDay}<td>
+      </tr>
+    `;
+  });
+  clickDealTap();
 }

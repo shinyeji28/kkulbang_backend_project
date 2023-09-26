@@ -59,18 +59,19 @@
 	          	<form>
 	              <div class="user-condition">
 	                <select id="sidoSelect" onchange="sidoOnChange(this.value)">
+	                  <option selected disabled>--- 시도 선택 ---</option>
 	                  <c:forEach var="sido" items="${sidoList}">
 	                  	<option value="${sido.dongCode}">${sido.sidoName}</option>
 	                  </c:forEach>
 	                </select>
 	                <select id="gugunSelect" onchange="gugunOnChange(this.value)">
-	                  	<option>구군 선택</option>
+	                  	<option selected disabled>--- 구군 선택 ---</option>
 	                </select>
 	                <select id="dongSelect" onchange="dongOnChange(this.value)">
-	                  	<option>동 선택</option>
+	                  	<option selected disabled>--- 동 선택 ---</option>
 	                </select>
                 </form>
-                <button id="filter" class="filter">필터</button>
+               <!-- <button id="filter" class="filter">필터</button> -->
               </div>
               <section id="filterList" class="filterList">
                 <div class="filter-sub-title">
@@ -96,16 +97,16 @@
               </section>
             </section>
             <section id="nav-right" class="nav-right">
-              <div id="aptListDiv" class="nav-right-wrap">
-               
-                
-              </div>
+              <div id="aptListDiv" class="nav-right-wrap"> </div>
             </section>
             <div id="map" class="map" style="width: 100%; height: 70vh"></div>
           </div>
         </div>
         <div id="dealSection" class="show-wrap">
-        	실시간 거래 페이지 입니다
+        	<table id="dealData">
+
+
+			</table>
         </div>
       </section>
     </main>
