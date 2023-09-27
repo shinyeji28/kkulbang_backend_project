@@ -143,7 +143,7 @@ public class BoardController extends HttpServlet {
 				return "/error/error.jsp";
 			}
 		} else
-			return "/user/login.jsp";
+			return "/member/login.jsp";
 	}
 
 	private String mvModify(HttpServletRequest request, HttpServletResponse response) {
@@ -157,7 +157,7 @@ public class BoardController extends HttpServlet {
 
 				return "/board/modify.jsp";
 			} else
-				return "/user/login.jsp";
+				return "/member/login.jsp";
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("msg", "글내용 얻는 중 문제 발생!!!");
@@ -184,7 +184,7 @@ public class BoardController extends HttpServlet {
 			}
 
 		} else
-			return "/user/login.jsp";
+			return "/member/login.jsp";
 	}
 
 	private String delete(HttpServletRequest request, HttpServletResponse response) {
@@ -203,7 +203,7 @@ public class BoardController extends HttpServlet {
 			}
 
 		} else
-			return "/user/login.jsp";
+			return "/member/login.jsp";
 	}
 
 }
