@@ -108,7 +108,7 @@ public class MemberDaoImpl implements MemberDao {
 				memberDto.setUserName(userName);
 				memberDto.setUserEmail(userEmail);
 				memberDto.setJoinDate(joinDate);
-				memberDto.setAdmin(admin);
+//				memberDto.setAdmin(admin);
 				return memberDto;
 			}
 			return null;
