@@ -19,7 +19,7 @@
 
 	<div class="container">
 		<!-- Heading -->
-		<h1>SIGN IN</h1>
+		<h1 class="loginTitle">SIGN IN</h1>
 		<c:set var="flag" value="0" />
 		<!-- Links -->
 		<ul class="links">

@@ -11,7 +11,9 @@ a:active {
   text-decoration: none;
 }
 
-
+header{
+	position:"relaction";
+}
 
 body {
   font-family: "Montserrat", sans-serif;
@@ -25,7 +27,7 @@ body {
   margin: 120px auto;
 }
 
-h1 {
+.loginTitle {
   color: #ffa100;
   font-size: 48px;
   letter-spacing: -3px;
