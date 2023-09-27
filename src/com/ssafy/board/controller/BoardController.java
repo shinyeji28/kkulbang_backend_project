@@ -171,6 +171,7 @@ public class BoardController extends HttpServlet {
 		if(memberDto != null) {
 			BoardDto boardDto = new BoardDto();
 			boardDto.setArticleNo(Integer.parseInt(request.getParameter("articleNo")));
+			System.out.println(request.getParameter("subject"));
 			boardDto.setSubject(request.getParameter("subject"));
 			boardDto.setContent(request.getParameter("content"));
 
