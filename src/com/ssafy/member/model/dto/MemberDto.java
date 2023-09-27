@@ -2,6 +2,7 @@ package com.ssafy.member.model.dto;
 
 public class MemberDto {
 	//"values ('ssafy1', '김싸피', '1234', 'email1@ssafy.com');";
+	private int userNo;
 	private String userId;
 	private String userName;
 	private String userPass;
@@ -16,6 +17,14 @@ public class MemberDto {
 		this.userName = userName;
 		this.userPass = userPass;
 		this.userEmail = userEmail;
+	}
+	public MemberDto(int userNo,String userId, String userName, String userEmail, String joinDate) {
+		super();
+		this.userNo=userNo;
+		this.userId = userId;
+		this.userName = userName;
+		this.userEmail = userEmail;
+		this.joinDate = joinDate;
 	}
 	public MemberDto(String userId, String userName, String userPass, String userEmail, String joinDate) {
 		super();
