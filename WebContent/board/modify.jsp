@@ -29,12 +29,11 @@
           <form id="form-modify" method="POST" action="">
             <div class="mb-3">
               <label for="subject" class="form-label">제목 : </label>
-              <input type="text" class="form-control" id="subject" value="즐거운 싸피생활!!!!" />
+              <input type="text" class="form-control" id="subject" value="${article.subject}" />
             </div>
             <div class="mb-3">
               <label for="content" class="form-label">내용 : </label>
-              <textarea class="form-control" id="content" rows="7">
-즐거운 싸피생활 하세요 ^^~
+              <textarea class="form-control" id="content" rows="7" >${article.content}
               </textarea>
             </div>
             <div class="col-auto text-center">
@@ -64,7 +63,7 @@
           return;
         } else {
           let form = document.querySelector("#form-modify");
-          form.setAttribute("action", "${root}/modify");
+          form.setAttribute("action", "");
           form.submit();
         }
       });

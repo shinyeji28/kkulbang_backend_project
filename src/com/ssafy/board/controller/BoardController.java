@@ -123,7 +123,7 @@ public class BoardController extends HttpServlet {
 				return "/error/error.jsp";
 			}
 		} else
-			return "/user/login.jsp";
+			return "/member/login.jsp";
 	}
 
 	private String write(HttpServletRequest request, HttpServletResponse response) {
@@ -151,7 +151,7 @@ public class BoardController extends HttpServlet {
 			HttpSession session = request.getSession();
 			MemberDto memberDto = (MemberDto) session.getAttribute("userinfo");
 			if(memberDto != null) {
-				int articleNo = Integer.parseInt(request.getParameter("articleno"));
+				int articleNo = Integer.parseInt(request.getParameter("articleNo"));
 				BoardDto boardDto = boardService.getArticle(articleNo);
 				request.setAttribute("article", boardDto);
 
@@ -170,7 +170,7 @@ public class BoardController extends HttpServlet {
 		MemberDto memberDto = (MemberDto) session.getAttribute("userinfo");
 		if(memberDto != null) {
 			BoardDto boardDto = new BoardDto();
-			boardDto.setArticleNo(Integer.parseInt(request.getParameter("articleno")));
+			boardDto.setArticleNo(Integer.parseInt(request.getParameter("articleNo")));
 			boardDto.setSubject(request.getParameter("subject"));
 			boardDto.setContent(request.getParameter("content"));
 
@@ -191,7 +191,7 @@ public class BoardController extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto) session.getAttribute("userinfo");
 		if(memberDto != null) {
-			int articleNo = Integer.parseInt(request.getParameter("articleno"));
+			int articleNo = Integer.parseInt(request.getParameter("articleNo"));
 
 			try {
 				boardService.deleteArticle(articleNo);
