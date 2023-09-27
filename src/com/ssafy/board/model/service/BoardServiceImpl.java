@@ -62,4 +62,9 @@ public class BoardServiceImpl implements BoardService {
 		boardDao.deleteArticle(articleNo);
 	}
 
+	@Override
+	public List<BoardDto> getNoticeList() throws Exception {
+		return boardDao.getNoticeList();
+	}
+
 }
