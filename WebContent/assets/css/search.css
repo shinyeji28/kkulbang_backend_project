@@ -71,14 +71,15 @@ body {
   font-weight: 700;
   border-bottom: 4px solid transparent;
 }
-.tab ul li button:active {
-  color: #ffa100;
-  border-bottom: 4px solid #ffa100;
-}
+
 .tab ul li button:hover {
   color: #ffa100;
   border-bottom: 4px solid #ffa100;
   cursor: pointer;
+}
+.activeTap{
+  color: #ffa100;
+  border-bottom: 4px solid #ffa100;
 }
 
 /* */
@@ -90,7 +91,7 @@ body {
   position: absolute;
   left: 30px;
   top: 20px;
-  width: 20%;
+  width: 430px;
   height: 100px;
   background-color: rgb(255, 255, 255);
   /* opacity: 0.7; */
@@ -157,7 +158,7 @@ td {
   width: 20%;
   height: 100%;
   background-color: rgb(255, 255, 255);
-  opacity: 0.7;
+  opacity: 0.8;
   z-index: 2;
   overflow-y: auto;
 }

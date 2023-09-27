@@ -186,6 +186,40 @@ public class HouseDaoImpl implements HouseDao {
 			dbUtil.close(conn, pstmt, rs);
 		}
 	}
+	
+	@Override
+	public List<HouseDealDto> getAptDealInfo(long aptCode) throws SQLException {
+		
+		String sql = "select *\r\n" + 
+				"from housedeal\r\n" + 
+				"where aptCode = ?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			List<HouseDealDto> list = new ArrayList<>();
+			conn = dbUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1,aptCode);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				long no = rs.getLong("no");
+				String dealAmount = rs.getString("dealAmount");
+				int year = rs.getInt("dealYear");
+				int month = rs.getInt("dealMonth");
+				int dealDay = rs.getInt("dealDay");
+				String area = rs.getString("area");
+				String floor = rs.getString("floor");
+				String cancelDealType = rs.getString("cancelDealType");
+				HouseDealDto houseDealDto = new HouseDealDto(no, dealAmount, year, month, dealDay, area, floor, cancelDealType, aptCode);
+				list.add(houseDealDto);
+			}
+			return list;
+			
+		}finally {
+			dbUtil.close(conn, pstmt, rs);
+		}
+	}
 
 
 }

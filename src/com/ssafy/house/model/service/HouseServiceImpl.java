@@ -45,5 +45,10 @@ public class HouseServiceImpl implements HouseService {
 	public List<HouseDealDto> searchByAptNo(long aptNo, int year, int month) throws SQLException {
 		return houseDaoImpl.searchByAptNo(aptNo, year, month);
 	}
+	@Override
+	public List<HouseDealDto> getAptDealInfo(long aptCode) throws SQLException {
+		return houseDaoImpl.getAptDealInfo(aptCode);
+	}
+
 
 }

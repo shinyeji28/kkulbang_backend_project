@@ -14,6 +14,7 @@ import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.house.model.dto.DongCodeDto;
+import com.ssafy.house.model.dto.HouseDealDto;
 import com.ssafy.house.model.dto.HouseInfoDto;
 import com.ssafy.house.model.service.HouseServiceImpl;
 
@@ -42,6 +43,9 @@ public class HouseController extends HttpServlet {
 			case "aptInfo":
 				getAptInfoList(request,response);
 				break;
+			case "deal":
+				getAptDealList(request,response);
+				break;
 			case "searchKeyword":
 				
 				break;
@@ -51,7 +55,18 @@ public class HouseController extends HttpServlet {
 		}
 	
 	}
+	private void getAptDealList(HttpServletRequest request, HttpServletResponse response) throws StreamWriteException, DatabindException, IOException, SQLException {
+		System.out.println("아파트 거래 정보 받기");
+		long aptCode = Long.parseLong(request.getParameter("aptCode"));
+		System.out.println((String) request.getParameter("aptCode"));
+		List<HouseDealDto> dealList = houseService.getAptDealInfo(aptCode);
+		// jackson 넘기기 
+		ObjectMapper mapper = new ObjectMapper();
+		
+		response.setContentType("application/json;charset=utf-8");
+		mapper.writeValue(response.getWriter(), dealList);
 
+	}
 	private void getAptInfoList(HttpServletRequest request, HttpServletResponse response) throws StreamWriteException, DatabindException, IOException, SQLException {
 		System.out.println("아파트 정보 받기");
 		String dongCode = (String) request.getParameter("dongCode");
