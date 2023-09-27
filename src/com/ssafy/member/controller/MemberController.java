@@ -2,6 +2,7 @@ package com.ssafy.member.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,20 +29,23 @@ public class MemberController extends HttpServlet {
 			case "mvLogin":
 				request.getRequestDispatcher("/member/login.jsp").forward(request, response);
 				break;
-			case "login":
+			case "login"://로그인
 				login(request,response);
 				break;
-			case "logout":
+			case "logout"://로그아웃
 				logout(request,response);
 				break;
-			case "mvFindPass":
+			case "mvFindPass"://비밀번호 찾기
 				request.getRequestDispatcher("/member/findUser.jsp").forward(request, response);
 				break;
-			case "findUser":
+			case "findUser"://비밀번호 찾기
 				findUser(request,response);
 				break;
 			case "regist"://회원가입
 				regist(request,response);
+				break;
+			case "list"://회원 리스트 보기
+				list(request,response);
 				break;
 			default:
 				break;
@@ -51,6 +55,12 @@ public class MemberController extends HttpServlet {
 			e.printStackTrace();
 		}
 
+	}
+	private void list(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+		System.out.println("전체 회원 목록 조회 요청 수신");
+		List<MemberDto> list = memberService.list();
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("/member/adminPage.jsp").forward(request, response);	
 	}
 	private void regist(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		System.out.println("회원가입");

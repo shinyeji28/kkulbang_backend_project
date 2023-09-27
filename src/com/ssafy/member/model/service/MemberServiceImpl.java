@@ -1,6 +1,7 @@
 package com.ssafy.member.model.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.ssafy.member.model.dao.MemberDaoImpl;
 import com.ssafy.member.model.dto.MemberDto;
@@ -43,5 +44,9 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public String findUser(MemberDto member) throws SQLException{
 		return MemberDaoImpl.getInstance().findUser(member);
+	}
+	@Override
+	public List<MemberDto> list() throws SQLException {		
+		return MemberDaoImpl.getInstance().list();
 	}
 }

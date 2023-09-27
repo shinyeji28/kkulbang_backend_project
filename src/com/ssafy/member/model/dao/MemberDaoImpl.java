@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.ssafy.member.model.dto.MemberDto;
 import com.ssafy.util.DBUtil;
@@ -182,6 +184,36 @@ public class MemberDaoImpl implements MemberDao {
 			e.printStackTrace();
 		}finally {
 			dbUtil.close(pstmt,conn);
+		}
+	}
+	@Override
+	public List<MemberDto> list() throws SQLException {
+		String sql = "select *\r\n" + 
+				"from member";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = dbUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			//4. 조회 데이터 파싱
+			List<MemberDto> list = new ArrayList<MemberDto>();
+			while(rs.next()) {
+				int no = rs.getInt("member_no");
+				String id = rs.getString("user_id");
+				String name = rs.getString("name");
+				String email = rs.getString("user_email");
+				String joinDate = rs.getString("join_date");
+				
+				MemberDto mem = new MemberDto(no,id,name,email,joinDate);
+				list.add(mem);
+			}
+			return list;
+		} finally {
+			dbUtil.close(rs, pstmt, conn);
 		}
 	}
 

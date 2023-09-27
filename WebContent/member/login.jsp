@@ -6,9 +6,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link
-	href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap"
-	rel="stylesheet" type="text/css" />
+
 <%@ include file="/include/headerFooter.jsp"%>
 
 <link rel="stylesheet"

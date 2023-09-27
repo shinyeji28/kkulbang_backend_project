@@ -1,6 +1,7 @@
 package com.ssafy.member.model.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.ssafy.member.model.dto.MemberDto;
 
@@ -18,5 +19,7 @@ public interface MemberService {
 	MemberDto loginByEamil(MemberDto member) throws SQLException;
 	
 	String findUser(MemberDto member) throws SQLException;
+	
+	List<MemberDto> list() throws SQLException;
 
 }
