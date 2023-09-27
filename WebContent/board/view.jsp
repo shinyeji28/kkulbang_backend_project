@@ -74,12 +74,12 @@
         location.href = "${root}/article?action=list";
       });
       document.querySelector("#btn-mv-modify").addEventListener("click", function () {
-        alert("글수정하자!!!");
-        location.href = "${root}";
+        alert("글을 수정합니다.");
+        location.href = "${root}/article?action=mvmodify&articleNo=${article.articleNo}";
       });
       document.querySelector("#btn-delete").addEventListener("click", function () {
-        alert("글삭제하자!!!");
-        location.href = "${root}";
+        alert("글을 삭제합니다.");
+        location.href = "${root}/article?action=delete&articleNo=${article.articleNo}";
       });
     </script>
   </body>
