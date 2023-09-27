@@ -108,7 +108,6 @@ public class MemberController extends HttpServlet {
 
 		MemberDto member= new MemberDto(id,null,password,null,null);
 		MemberDto getMember = memberService.login(member);
-		System.out.println(getMember);
 
 		if(getMember!=null) {//로그인 성공
 			System.out.println("로그인 성공 : "+getMember);
