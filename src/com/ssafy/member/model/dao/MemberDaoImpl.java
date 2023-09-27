@@ -204,7 +204,7 @@ public class MemberDaoImpl implements MemberDao {
 			while(rs.next()) {
 				int no = rs.getInt("member_no");
 				String id = rs.getString("user_id");
-				String name = rs.getString("name");
+				String name = rs.getString("user_name");
 				String email = rs.getString("user_email");
 				String joinDate = rs.getString("join_date");
 				

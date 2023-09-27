@@ -52,6 +52,6 @@ let regist=document.querySelector("#regist");
   });
   reset.addEventListener("click", function (e) {
 	console.log("click reset");
-	window.
+	
 	});
 };
