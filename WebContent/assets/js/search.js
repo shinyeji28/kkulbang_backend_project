@@ -91,9 +91,14 @@ const envBtn = document.querySelector("#envBtn");
 envBtn.addEventListener("click", function () {});
 */
 
+let selectedSido = "";
+let selectedGugun = "";
+let selectedDong = "";
 
   // 구군 리스트 요청 및 출력
-function sidoOnChange(dongCode) {
+function sidoOnChange(sido) {
+  let dongCode = sido.value;
+  selectedSido = sido.options[sido.selectedIndex].text;
   let url = `${root}/house?action=gugun&dongCode=${dongCode}`;
   fetch(url)
     .then((response) => response.json())
@@ -109,7 +114,9 @@ function gugunListParsing(datas) {
   dongSelect.innerHTML = `<option selected disabled>--- 동 선택 ---</option>`;
 }
   // 동 리스트 요청 및 출력
-function gugunOnChange(dongCode) {
+function gugunOnChange(gugun) {
+  let dongCode = gugun.value;
+  selectedGugun = gugun.options[gugun.selectedIndex].text;
   let url = `${root}/house?action=dong&dongCode=${dongCode}`;
   fetch(url)
     .then((response) => response.json())
@@ -123,7 +130,9 @@ function dongListParsing(datas) {
   })
 }
   // 동 까지 선택했을 때 아파트 정보 요청 및 출력 
-function dongOnChange(dongCode) {
+function dongOnChange(dong) {
+  let dongCode = dong.value;
+  selectedDong = dong.options[dong.selectedIndex].text;
   let url = `${root}/house?action=aptInfo&dongCode=${dongCode}`;
   fetch(url)
     .then((response) => response.json())
@@ -158,6 +167,7 @@ function aptListParsing(datas) {
 
 // 아파트 거래 정보 
 function aptDeal(aptCode){
+	
   let url = `${root}/house?action=deal&aptCode=${aptCode}`;
   fetch(url)
     .then((response) => response.json())
@@ -165,6 +175,11 @@ function aptDeal(aptCode){
 }
 function dealListParsing(datas){
   let dealData = document.querySelector("#dealData");
+  let dealAreaTitle = document.querySelector("#dealAreaTitle");
+  
+  dealAreaTitle.innerText=`
+  ${selectedSido} ${selectedGugun} ${selectedDong}에 대한 거래 정보 조회
+  `;
   dealData.innerHTML = `	
     <tr>
       <th>거래 금액</th>	
