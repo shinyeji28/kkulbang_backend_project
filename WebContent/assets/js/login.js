@@ -7,8 +7,9 @@ window.onload = function () {
   let signin_btn = document.querySelector(".signin__btn");
   let check = document.querySelector(".check");
   let name = document.querySelector("#input_name");
-let login=document.querySelector("#login");
-let regist=document.querySelector("#regist");
+//
+  let login=document.querySelector("#login");
+  let regist=document.querySelector("#regist");
   let findPass=document.querySelector("#login_reset");
 
   //----------- sign up ---------------------
@@ -21,14 +22,13 @@ let regist=document.querySelector("#regist");
     hidden_input.style.opacity = "1";
     hidden_input.style.display = "block";
     signin_btn.innerText = "Sign up";
-    name.style.display = "block";
-    if (check.style.display !== "none") {
-      check.style.display = "none";
-    }
+    name.style.display = "block";//이름 보이기
+    check.style.display = "none";//체크박스 없애기
+	console.log("click 회원가입");
 	login.style.display = "none";
 	regist.style.display = "block";
 	findPass.style.display = "none";
-	console.log("click regist");
+	
   });
 
   //----------- sign in ---------------------
@@ -41,17 +41,16 @@ let regist=document.querySelector("#regist");
     hidden_input.style.opacity = "0";
     hidden_input.style.display = "none";
     signin_btn.innerText = "Sign in";
-    name.style.display = "none";
-    if (check.style.display == "none") {
-      check.style.display = "block";
-    }
-	console.log("click login");
+    name.style.display = "none";//이름 없애기
+    check.style.display = "block";//체크박스 보이기
+	console.log("click 로그인");
 	login.style.display = "block";
 	regist.style.display = "none";
 	findPass.style.display = "none";
   });
+//----------- find password  ---------------------
   reset.addEventListener("click", function (e) {
 	console.log("click reset");
-	window.
+	 //window.open("../member,ad=findUser.jsp", "비밀번호 찾기", "width=400, height=300, top=50, left=50");
 	});
 };

@@ -47,6 +47,9 @@ public class MemberController extends HttpServlet {
 			case "list"://회원 리스트 보기
 				list(request,response);
 				break;
+			case "delete"://회원 리스트에서 회원 삭제
+				delete(request,response);
+				break;
 			default:
 				break;
 			}
@@ -55,6 +58,15 @@ public class MemberController extends HttpServlet {
 			e.printStackTrace();
 		}
 
+	}
+	private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		System.out.println("삭제 요청 수신");
+		String id = request.getParameter("id");
+		System.out.println("삭제할 국가 코드: "+id);
+		memberService.deleteMember(id);
+		
+		response.sendRedirect(request.getContextPath()+"/member?action=list");
+		
 	}
 	//전체 회원 목록 보기
 	private void list(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
@@ -96,7 +108,6 @@ public class MemberController extends HttpServlet {
 
 		MemberDto member= new MemberDto(id,null,password,null,null);
 		MemberDto getMember = memberService.login(member);
-		System.out.println(getMember);
 
 		if(getMember!=null) {//로그인 성공
 			System.out.println("로그인 성공 : "+getMember);

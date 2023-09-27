@@ -102,11 +102,13 @@ public class MemberDaoImpl implements MemberDao {
 				String userName=rs.getString("user_name");
 				String userEmail=rs.getString("user_email");
 				String joinDate = rs.getString("join_date");
+				boolean admin = rs.getBoolean("admin");
 				MemberDto memberDto = new MemberDto();
 				memberDto.setUserId(member.getUserId());
 				memberDto.setUserName(userName);
 				memberDto.setUserEmail(userEmail);
 				memberDto.setJoinDate(joinDate);
+//				memberDto.setAdmin(admin);
 				return memberDto;
 			}
 			return null;
@@ -204,11 +206,12 @@ public class MemberDaoImpl implements MemberDao {
 			while(rs.next()) {
 				int no = rs.getInt("member_no");
 				String id = rs.getString("user_id");
-				String name = rs.getString("name");
+				String name = rs.getString("user_name");
 				String email = rs.getString("user_email");
 				String joinDate = rs.getString("join_date");
+				boolean admin = rs.getBoolean("admin");
 				
-				MemberDto mem = new MemberDto(no,id,name,email,joinDate);
+				MemberDto mem = new MemberDto(no,id,name,email,joinDate,admin);
 				list.add(mem);
 			}
 			return list;

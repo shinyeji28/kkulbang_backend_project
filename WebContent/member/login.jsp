@@ -23,9 +23,9 @@
 		<c:set var="flag" value="0" />
 		<!-- Links -->
 		<ul class="links">
-			<li><a id="signin" name="choiceLogin" >로그인</a></li>
-			<li><a id="signup" name="choiceLogup">회원가입</a></li>
-			<li><a id="reset" name="choiceFindPass">비밀번호 찾기</a></li>
+			<li><a id="signin">로그인</a></li>
+			<li><a id="signup">회원가입</a></li>
+			<li><a id="reset" >비밀번호 찾기</a></li>
 		</ul>
 
 		<%--<!-- Form -->--%>
