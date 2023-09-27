@@ -30,11 +30,7 @@
 
 		<%--<!-- Form -->--%>
 		<form action="${pageContext.request.contextPath}/member" method="post">
-
-			<input type="hidden" id="login"name="action" value="login">
-		
-			<input type="hidden" id="regist" name="action" value="regist">
-	
+			<input type="hidden" name="action" value="login">
 
 			<!-- id input -->
 			<div class="first-input input__block first-input__block">

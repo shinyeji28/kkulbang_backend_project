@@ -51,11 +51,13 @@ public class MemberController extends HttpServlet {
 				delete(request,response);
 				break;
 			default:
+				request.getRequestDispatcher("index.jsp").forward(request, response);
 				break;
 			}
 
-		} catch (Exception e) {
+		} catch (Exception e) {			
 			e.printStackTrace();
+//			request.getRequestDispatcher("/error/error.jsp").forward(request, response);
 		}
 
 	}
@@ -113,6 +115,7 @@ public class MemberController extends HttpServlet {
 			System.out.println("로그인 성공 : "+userInfo);
 			HttpSession session = request.getSession();
 			session.setAttribute("userinfo", userInfo);
+			
 			String isRemember = request.getParameter("isRemember");
 			System.out.println("isRemember : "+isRemember);
 			if(isRemember!=null) {//아이디 기억
