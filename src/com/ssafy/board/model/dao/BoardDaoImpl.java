@@ -180,7 +180,6 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public List<BoardDto> getNoticeList() throws Exception {
-		System.out.println("A");
 		BoardDto boardDto = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -201,7 +200,6 @@ public class BoardDaoImpl implements BoardDao {
 				boardDto.setContent(rs.getString("content"));
 				boardDto.setHit(rs.getInt("hit"));
 				boardDto.setRegisterTime(rs.getString("register_time"));
-				System.out.println(boardDto);
 				list.add(boardDto);
 			}
 			return list;		

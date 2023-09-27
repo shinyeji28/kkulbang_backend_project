@@ -1,4 +1,5 @@
-const root = "/WhereIsMyHome";
+//const root = "/WhereIsMyHome";
+const root = document.querySelector("#contextPath").value; 
 
 
 // 카카오 맵 ------------------------------------------------------------------

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,7 +33,7 @@
                 <input
                   id="searchWidth"
                   type="text"
-                  placeholder="지역, 동, 아파트명을 입력하세요"
+                  placeholder="아파트명을 입력하세요"
                 />
                 <button id="btn" type="submit">
                   <a href="${pageContext.request.contextPath}/search.jsp">검색</a>
@@ -49,39 +50,13 @@
               <div><a href="<%=request.getContextPath()%>/article?action=list&pgno=1&key=&word=">더보기</a></div>
             </div>
 
-            <div id="newsContentWrapper">
-              <div class="newsContentBox">
-                <a href="" class="newsContent"> 꿀방 9월 이벤트 안내 </a>
-              </div>
-            </div>
-
-            <div id="newsContentWrapper">
-              <div class="newsContentBox">
-                <a href="" class="newsContent">
-                  꿀방과 함께하는 안전한 부동산 거래 수칙
-                </a>
-              </div>
-            </div>
-
-            <div id="newsContentWrapper">
-              <div class="newsContentBox">
-                <a href="" class="newsContent"> 꿀방 100% 활용하는 방법 </a>
-              </div>
-            </div>
-
-            <div id="newsContentWrapper">
-              <div class="newsContentBox">
-                <a href="" class="newsContent"> 꿀방 신규 회원 이벤트 </a>
-              </div>
-            </div>
-
-            <div id="newsContentWrapper">
-              <div class="newsContentBox">
-                <a href="" class="newsContent">
-                  합리적인 부동산 거래 꿀방과 함께 하세요
-                </a>
-              </div>
-            </div>
+			<c:forEach var="notice" items="${notices}">
+	            <div id="newsContentWrapper">
+	              <div class="newsContentBox">
+	                <a href="${pageContext.request.contextPath}/article?action=view&articleno=${notice.articleNo}" class="newsContent">${notice.subject}</a>
+	              </div>
+	            </div>
+            </c:forEach>
           </div>
 
           <div id="newWrapper">

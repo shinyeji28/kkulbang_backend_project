@@ -108,8 +108,8 @@ public class BoardController extends HttpServlet {
 
 	private String view(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		MemberDto memberDto = (MemberDto) session.getAttribute("userinfo");
-		if (memberDto != null) {
+//		MemberDto memberDto = (MemberDto) session.getAttribute("userinfo");
+//		if (memberDto != null) {
 			int articleNo = Integer.parseInt(request.getParameter("articleno"));
 			try {
 				BoardDto boardDto = boardService.getArticle(articleNo);
@@ -122,8 +122,8 @@ public class BoardController extends HttpServlet {
 				request.setAttribute("msg", "글내용 출력 중 문제 발생!!!");
 				return "/error/error.jsp";
 			}
-		} else
-			return "/member/login.jsp";
+//		} else
+//			return "/member/login.jsp";
 	}
 
 	private String write(HttpServletRequest request, HttpServletResponse response) {

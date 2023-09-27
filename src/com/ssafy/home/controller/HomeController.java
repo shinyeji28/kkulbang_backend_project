@@ -35,9 +35,7 @@ public class HomeController extends HttpServlet {
 
 
 	private void getNoticeList(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("a");
 		List<BoardDto> notices = boardService.getNoticeList();
-		System.out.println(notices);
 		request.setAttribute("notices", notices);
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}

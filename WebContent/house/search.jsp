@@ -19,6 +19,7 @@
     />
   </head>
   <body>
+  	<input id="contextPath" value="${pageContext.request.contextPath}" style="display:none"/>
     <%@ include file="/include/header.jsp" %>
     
     <div class="back">
