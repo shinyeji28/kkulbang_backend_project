@@ -102,7 +102,7 @@ public class MemberDaoImpl implements MemberDao {
 				String userName=rs.getString("user_name");
 				String userEmail=rs.getString("user_email");
 				String joinDate = rs.getString("join_date");
-				boolean admin = rs.getBoolean("admin");
+//				boolean admin = rs.getBoolean("admin");
 				MemberDto memberDto = new MemberDto();
 				memberDto.setUserId(member.getUserId());
 				memberDto.setUserName(userName);

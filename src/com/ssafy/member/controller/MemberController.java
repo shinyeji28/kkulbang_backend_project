@@ -107,12 +107,12 @@ public class MemberController extends HttpServlet {
 		System.out.println(id+" "+password);
 
 		MemberDto member= new MemberDto(id,null,password,null,null);
-		MemberDto getMember = memberService.login(member);
+		MemberDto userInfo = memberService.login(member);
 
-		if(getMember!=null) {//로그인 성공
-			System.out.println("로그인 성공 : "+getMember);
+		if(userInfo!=null) {//로그인 성공
+			System.out.println("로그인 성공 : "+userInfo);
 			HttpSession session = request.getSession();
-			session.setAttribute("getMember", getMember);
+			session.setAttribute("userinfo", userInfo);
 			String isRemember = request.getParameter("isRemember");
 			System.out.println("isRemember : "+isRemember);
 			if(isRemember!=null) {//아이디 기억
