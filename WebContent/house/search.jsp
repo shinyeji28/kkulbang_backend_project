@@ -58,16 +58,16 @@
 	            </form>
 	          	<form>
 	              <div class="user-condition">
-	                <select id="sidoSelect" onchange="sidoOnChange(this.value)">
+	                <select id="sidoSelect" onchange="sidoOnChange(this)">
 	                  <option selected disabled>--- 시도 선택 ---</option>
 	                  <c:forEach var="sido" items="${sidoList}">
 	                  	<option value="${sido.dongCode}">${sido.sidoName}</option>
 	                  </c:forEach>
 	                </select>
-	                <select id="gugunSelect" onchange="gugunOnChange(this.value)">
+	                <select id="gugunSelect" onchange="gugunOnChange(this)">
 	                  	<option selected disabled>--- 구군 선택 ---</option>
 	                </select>
-	                <select id="dongSelect" onchange="dongOnChange(this.value)">
+	                <select id="dongSelect" onchange="dongOnChange(this)">
 	                  	<option selected disabled>--- 동 선택 ---</option>
 	                </select>
                 </form>
@@ -103,6 +103,7 @@
           </div>
         </div>
         <div id="dealSection" class="show-wrap">
+        	<h2 id="dealAreaTitle"></h2>
         	<table id="dealData">
 
 
