@@ -24,7 +24,7 @@
 			</c:if>
 			
 			<%--로그인하지 않은 경우 메뉴 --%>
-			<c:if test="${empty sessionScope.getMember }">
+			<c:if test="${empty sessionScope.userinfo }">
 				<li>
 					<button class="header-btn">
 						<a href="${pageContext.request.contextPath}/member?action=mvLogin">로그인</a>
@@ -32,7 +32,7 @@
 				</li>
 			</c:if>
 			<%--로그인하지 않은 경우 메뉴 --%>
-			<c:if test="${not empty sessionScope.getMember }">
+			<c:if test="${not empty sessionScope.userinfo }">
 				<li>
 					<button class="header-btn">
 						<a href="${pageContext.request.contextPath}/member?action=logout">로그아웃</a>
