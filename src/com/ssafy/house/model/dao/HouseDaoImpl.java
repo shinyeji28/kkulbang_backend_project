@@ -108,8 +108,16 @@ public class HouseDaoImpl implements HouseDao {
 
 	@Override
 	
-	public List<HouseInfoDto> searchByDongCode(String dongCode) throws SQLException {
-		String sql = "select * from houseinfo where dongCode = ?";
+	public List<HouseInfoDto> searchByDongCode(String dongCode, String aptName) throws SQLException {
+		String sql="";
+		if(dongCode==null) {
+			 sql = "select * from houseinfo where apartmentName like concat('%',?,'%')";
+		}else if(aptName==null) {
+			 sql = "select * from houseinfo where dongCode = ?";
+		}else {
+			 sql = "select * from houseinfo where dongCode = ? and apartmentName like concat('%',?,'%')";
+
+		}
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -117,7 +125,14 @@ public class HouseDaoImpl implements HouseDao {
 			List<HouseInfoDto> list = new ArrayList<HouseInfoDto>();
 			conn = dbUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dongCode+"");
+			if(dongCode==null) {
+				pstmt.setString(1, aptName);
+			}else if(aptName==null) {
+				pstmt.setString(1, dongCode);
+			}else {
+				pstmt.setString(1, dongCode);
+				pstmt.setString(2, aptName);
+			}
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				long aptCode = rs.getLong("aptCode");
@@ -138,10 +153,11 @@ public class HouseDaoImpl implements HouseDao {
 				String jibun = rs.getString("jibun");
 				String lng = rs.getString("lng");
 				String lat = rs.getString("lat");
+				String dongCode1 = rs.getString("dongCode");
 				
 				HouseInfoDto houseInfoDto = new HouseInfoDto(aptCode, buildYear, roadName, roadNameBonbun, roadNameBubun,
 						roadNameSeq, roadNameBasementCode, roadNameCode, dong, bonbun,
-						bubun, sigunguCode, eubmyundongCode, dongCode, landCode,
+						bubun, sigunguCode, eubmyundongCode, dongCode1, landCode,
 						apartmentName, jibun, lng, lat);
 				list.add(houseInfoDto);
 			}

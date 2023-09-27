@@ -46,17 +46,16 @@
           <div class="show-wrap2">
             <section id="nav-left" class="nav-left">
             
-              <form method="post" action="${pageContext.request.contextPath}/house?action=searchKeyword">
 	              <input
+	                id="keyword"
 	                type="text"
-	                placeholder="원하시는 지역명/지하철역/아파트명을 검색하세요"
-	                name="keyword"
+	                placeholder="아파트명을 검색하세요"
+	                name="aptName"
+	                onchange="keywordOnChange(this)"
 	              />
-	              <button sub class="search-btn">
+	              <button type="button" onclick="searchKeyword()" class="search-btn">
 	                <i class="bi bi-search"></i>
 	              </button>
-	            </form>
-	          	<form>
 	              <div class="user-condition">
 	                <select id="sidoSelect" onchange="sidoOnChange(this)">
 	                  <option selected disabled>--- 시도 선택 ---</option>
@@ -70,7 +69,6 @@
 	                <select id="dongSelect" onchange="dongOnChange(this)">
 	                  	<option selected disabled>--- 동 선택 ---</option>
 	                </select>
-                </form>
                <!-- <button id="filter" class="filter">필터</button> -->
               </div>
               <section id="filterList" class="filterList">
@@ -104,6 +102,7 @@
         </div>
         <div id="dealSection" class="show-wrap">
         	<h2 id="dealAreaTitle"></h2>
+        	<br/>
         	<table id="dealData">
 
 

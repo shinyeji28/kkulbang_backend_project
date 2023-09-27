@@ -46,9 +46,6 @@ public class HouseController extends HttpServlet {
 			case "deal":
 				getAptDealList(request,response);
 				break;
-			case "searchKeyword":
-				
-				break;
 			}
 		} catch (Exception e) {
 			e.getStackTrace();
@@ -70,8 +67,10 @@ public class HouseController extends HttpServlet {
 	private void getAptInfoList(HttpServletRequest request, HttpServletResponse response) throws StreamWriteException, DatabindException, IOException, SQLException {
 		System.out.println("아파트 정보 받기");
 		String dongCode = (String) request.getParameter("dongCode");
+		String aptName = (String) request.getParameter("aptName");
+		
 		// 동 데이터 받아오기
-		List<HouseInfoDto> aptList = houseService.searchByDongCode(dongCode);
+		List<HouseInfoDto> aptList = houseService.searchByDongCode(dongCode,aptName);
 		// jackson 넘기기 
 		ObjectMapper mapper = new ObjectMapper();
 		

@@ -37,8 +37,8 @@ public class HouseServiceImpl implements HouseService {
 	}
 
 	@Override
-	public List<HouseInfoDto> searchByDongCode(String dongCode) throws SQLException {
-		return houseDaoImpl.searchByDongCode(dongCode);
+	public List<HouseInfoDto> searchByDongCode(String dongCode, String aptName) throws SQLException {
+		return houseDaoImpl.searchByDongCode(dongCode, aptName);
 	}
 
 	@Override

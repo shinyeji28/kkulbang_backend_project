@@ -18,7 +18,7 @@ public interface HouseDao {
 	// 아파트 전체 리스트 (입력을 동까지 받음)
 	List<DongCodeDto> getDongList(String dongCode) throws SQLException;
 	// 동 코드로 검색
-	List<HouseInfoDto> searchByDongCode(String dongCode) throws SQLException;
+	List<HouseInfoDto> searchByDongCode(String dongCode, String aptName) throws SQLException;
 	// 아파트 번호로 검색
 	List<HouseDealDto> searchByAptNo(long aptNo, int year, int month) throws SQLException;
 	// 아파트 거래 검색

@@ -94,6 +94,8 @@ envBtn.addEventListener("click", function () {});
 let selectedSido = "";
 let selectedGugun = "";
 let selectedDong = "";
+let aptKeyword="";
+let selectedDongCode="";
 
   // 구군 리스트 요청 및 출력
 function sidoOnChange(sido) {
@@ -132,8 +134,10 @@ function dongListParsing(datas) {
   // 동 까지 선택했을 때 아파트 정보 요청 및 출력 
 function dongOnChange(dong) {
   let dongCode = dong.value;
+  selectedDongCode = dong.value;
   selectedDong = dong.options[dong.selectedIndex].text;
-  let url = `${root}/house?action=aptInfo&dongCode=${dongCode}`;
+
+  let url = `${root}/house?action=aptInfo&dongCode=${dongCode}&aptName=${aptKeyword}`;
   fetch(url)
     .then((response) => response.json())
     .then((data) => aptListParsing(data));
@@ -142,27 +146,33 @@ function aptListParsing(datas) {
   let aptListDiv = document.querySelector("#aptListDiv");
   let markList = [];
   let firstDataPos = []; // 첫번째 데이터의 위도와 경도
-  datas.forEach(function(data){
-    firstDataPos= [data.lat, data.lng];
-    aptListDiv.innerHTML += ` 
-    <ul onclick=aptDeal(${data.aptCode})>
-      <li><h3>${data.apartmentName}<h3></li>
-      <br>  
-      <li>${data.dong} ${data.roadName} ${data.roadNameBonbun.replace(/(^0+)/,"")}</li>
-      <li>건축년도 : ${data.buildYear}</li>
-    </ul>`;
-    
-    markList.push({
-      title: data.apartmentName,
-      latlng: new kakao.maps.LatLng(data.lat, data.lng)});
-  })
+  if(datas){
+	  aptListDiv.innerHTML = ``;	 
+	  datas.forEach(function(data){
+	    firstDataPos= [data.lat, data.lng];
+	    aptListDiv.innerHTML += ` 
+	    <ul onclick=aptDeal(${data.aptCode})>
+	      <li><h3>${data.apartmentName}<h3></li>
+	      <br>  
+	      <li>${data.dong} ${data.roadName} ${data.roadNameBonbun.replace(/(^0+)/,"")}</li>
+	      <li>건축년도 : ${data.buildYear}</li>
+	    </ul>`;
+	    
+	    markList.push({
+	      title: data.apartmentName,
+	      latlng: new kakao.maps.LatLng(data.lat, data.lng)});
 	
-  let navRight = document.querySelector("#nav-right");
-  navRight.setAttribute("style", "position: absolute;");
-
-  positions = markList;
-  marking();
-  panTo(firstDataPos[0],firstDataPos[1]);
+	  })
+	
+	
+	  let navRight = document.querySelector("#nav-right");
+	  navRight.setAttribute("style", "position: absolute;");
+	
+	  positions = markList;
+	  marking();
+	  panTo(firstDataPos[0],firstDataPos[1]);
+  }
+   
 }
 
 // 아파트 거래 정보 
@@ -178,7 +188,7 @@ function dealListParsing(datas){
   let dealAreaTitle = document.querySelector("#dealAreaTitle");
   
   dealAreaTitle.innerText=`
-  ${selectedSido} ${selectedGugun} ${selectedDong}에 대한 거래 정보 조회
+  "${selectedSido} ${selectedGugun} ${selectedDong}"에 대한 거래 정보 조회
   `;
   dealData.innerHTML = `	
     <tr>
@@ -191,12 +201,24 @@ function dealListParsing(datas){
   datas.forEach(function(data){
     dealData.innerHTML += `
       <tr>
-        <td>${data.dealAmount}<td>
-        <td>${data.area}<td>
-        <td>${data.floor}<td>
-        <td>${data.dealYear}.${data.dealMonth}.${data.dealDay}<td>
+        <td>${data.dealAmount}원</td>	
+        <td>${data.area}m<sup>2</sup></td>
+        <td>${data.floor}층</td>
+        <td>${data.dealYear}.${data.dealMonth}.${data.dealDay}</td>
       </tr>
     `;
   });
   clickDealTap();
+}
+// 아파트 검색 키워드 저장
+function keywordOnChange(keyword){
+    aptKeyword = keyword.value;
+}
+
+// 키워드로 아파트 검색하기
+function searchKeyword(){
+  let url = `${root}/house?action=aptInfo&dongCode=${selectedDongCode}&aptName=${aptKeyword}`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {aptListParsing(data)});
 }
