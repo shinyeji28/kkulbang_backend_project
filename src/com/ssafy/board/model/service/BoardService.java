@@ -2,13 +2,14 @@ package com.ssafy.board.model.service;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import com.ssafy.board.model.dto.BoardDto;
 
 public interface BoardService {
 
 	void writeArticle(BoardDto boardDto) throws Exception;
-	List<BoardDto> listArticle() throws SQLException, Exception;
+	List<BoardDto> listArticle(Map<String, String> map) throws Exception;
 	BoardDto getArticle(int articleNo) throws Exception;
 	void updateHit(int articleNo) throws Exception;
 	

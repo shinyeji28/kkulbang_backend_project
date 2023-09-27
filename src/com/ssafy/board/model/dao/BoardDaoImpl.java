@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.ssafy.board.model.dto.BoardDto;
 import com.ssafy.util.DBUtil;
@@ -45,7 +46,7 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public List<BoardDto> listArticle() throws SQLException {
+	public List<BoardDto> listArticle(Map<String, Object> param) throws SQLException {
 		List<BoardDto> list = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -55,8 +56,23 @@ public class BoardDaoImpl implements BoardDao {
 			StringBuilder sql = new StringBuilder();
 			sql.append("select article_no, user_id, subject, content, hit, register_time \n");
 			sql.append("from board \n");
-			sql.append("order by article_no desc");
+			String key = (String) param.get("key");
+			String word = (String) param.get("word");
+			if(!key.isEmpty() && !word.isEmpty()) {
+				if("subject".equals(key)) {
+					sql.append("where subject like concat('%', ?, '%') \n");
+				} else {
+					sql.append("where ").append(key).append(" = ? \n");
+				}
+			}
+			sql.append("order by article_no desc \n");
+			sql.append("limit ?, ?");
 			pstmt = conn.prepareStatement(sql.toString());
+			int idx = 0;
+			if(!key.isEmpty() && !word.isEmpty())
+				pstmt.setString(++idx, word);
+			pstmt.setInt(++idx, (Integer) param.get("start"));
+			pstmt.setInt(++idx, (Integer) param.get("listsize"));
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				BoardDto boardDto = new BoardDto();

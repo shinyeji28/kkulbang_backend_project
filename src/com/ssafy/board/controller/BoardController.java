@@ -1,7 +1,9 @@
 package com.ssafy.board.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -16,10 +18,17 @@ import com.ssafy.board.model.dto.BoardDto;
 import com.ssafy.board.model.service.BoardService;
 import com.ssafy.board.model.service.BoardServiceImpl;
 import com.ssafy.member.model.dto.MemberDto;
+import com.ssafy.util.PageNavigation;
+import com.ssafy.util.ParameterCheck;
 
 @WebServlet("/article")
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private int pgno;
+	private String key;
+	private String word;
+	private String queryStrig;
 
 	private BoardService boardService;
 
@@ -32,6 +41,10 @@ public class BoardController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
+		
+		pgno = ParameterCheck.notNumberToOne(request.getParameter("pgno"));
+		key = ParameterCheck.nullToBlank(request.getParameter("key"));
+		word = ParameterCheck.nullToBlank(request.getParameter("word"));
 
 		String path = "";
 		if ("list".equals(action)) {
@@ -79,7 +92,12 @@ public class BoardController extends HttpServlet {
 
 	private String list(HttpServletRequest request, HttpServletResponse response) {
 			try {
-				List<BoardDto> list = boardService.listArticle();
+				Map<String, String> map = new HashMap<String, String>();
+				map.put("pgno", pgno + "");
+				map.put("key", key);
+				map.put("word", word);
+				
+				List<BoardDto> list = boardService.listArticle(map);
 				request.setAttribute("articles", list);
 				return "/board/list.jsp";
 			} catch (Exception e) {
