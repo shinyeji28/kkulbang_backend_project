@@ -64,7 +64,7 @@ public class MemberController extends HttpServlet {
 	private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		System.out.println("삭제 요청 수신");
 		String id = request.getParameter("id");
-		System.out.println("삭제할 국가 코드: "+id);
+		System.out.println("삭제할 회원 아이디: "+id);
 		memberService.deleteMember(id);
 		
 		response.sendRedirect(request.getContextPath()+"/member?action=list");

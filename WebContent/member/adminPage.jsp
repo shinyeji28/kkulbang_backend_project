@@ -31,7 +31,7 @@
 					<td>${member.userName }</td>
 					<td>${member.userEmail }</td>
 					<td>${member.joinDate }</td>
-					<td><button type="button" id="delete" value="${member.userId }">삭제</button></td>
+					<td><button type="button"><a href="${pageContext.request.contextPath }/member?action=delete&id=${member.userId }">삭제</a></button></td>
 				</tr>
 				
 			</c:forEach>

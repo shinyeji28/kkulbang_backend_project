@@ -17,7 +17,8 @@
 			
 			<%--관리자로 로그인 했을 경우 메뉴 --%>
 			<c:if test="${userinfo.userId eq 'admin'}">
-				<li><button class="header-btn">어서오세요</button></li>
+				<li><button class="header-btn">
+				<a href="${pageContext.request.contextPath}/member?action=list">관리자 페이지</a></button></li>
 			</c:if>
 			
 			<%--로그인하지 않은 경우 메뉴 --%>
