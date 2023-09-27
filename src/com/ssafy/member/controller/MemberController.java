@@ -26,7 +26,7 @@ public class MemberController extends HttpServlet {
 		try {
 			switch (action) {
 			case "mvLogin":
-				request.getRequestDispatcher("/login.jsp").forward(request, response);
+				request.getRequestDispatcher("/member/login.jsp").forward(request, response);
 				break;
 			case "login":
 				login(request,response);
@@ -34,8 +34,8 @@ public class MemberController extends HttpServlet {
 			case "logout":
 				logout(request,response);
 				break;
-			case "findPass":
-				
+			case "mvFindPass":
+				request.getRequestDispatcher("/member/findUser.jsp").forward(request, response);
 				break;
 			case "findUser":
 				findUser(request,response);
@@ -54,14 +54,15 @@ public class MemberController extends HttpServlet {
 	}
 	private void regist(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		System.out.println("회원가입");
-		String id = request.getParameter("user_id");
-		String name = request.getParameter("user_name");
-		String password = request.getParameter("user_password");
-		String email = request.getParameter("user_email");
-		MemberDto member= new MemberDto(id,name,password,email,null);
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String password = request.getParameter("password");
+		String repeatPass = request.getParameter("repeatPassword");
+		MemberDto member= new MemberDto(id,name,password,null,null);
+		System.out.println("등록할 정보: "+member);
 		memberService.registerMember(member);
 		
-		response.sendRedirect(request.getContextPath()+"/member?action=login");
+		response.sendRedirect(request.getContextPath()+"/member?action=mvLogin");
 	}
 	private void findUser(HttpServletRequest request, HttpServletResponse response) throws SQLException {
 		System.out.println("비밀번호 찾기 요청");
@@ -69,17 +70,20 @@ public class MemberController extends HttpServlet {
 		String name=request.getParameter("name");
 		String email=request.getParameter("email");
 		MemberDto member= new MemberDto(id,name,null,email,null);
-		int memberNo=memberService.findUser(member);
+		String password=memberService.findUser(member);
 		
 
 	}
-	/* id로 로그인
-	private void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	// id로 로그인
+	private void login(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
 		System.out.println("로그인 요청");
-		String id = request.getParameter("user_id");		
-		String password = request.getParameter("user_password");
+		String id = request.getParameter("id");		
+		String password = request.getParameter("password");
+		System.out.println(id+" "+password);
+
 		MemberDto member= new MemberDto(id,null,password,null,null);
-		MemberDto getMember = memberService.login(member);		
+		MemberDto getMember = memberService.login(member);
+		System.out.println(getMember);
 
 		if(getMember!=null) {//로그인 성공
 			System.out.println("로그인 성공 : "+getMember);
@@ -99,39 +103,38 @@ public class MemberController extends HttpServlet {
 			response.sendRedirect(request.getContextPath());
 		}else {//로그인 실패
 			System.out.println("로그인 실패");
-			response.sendRedirect(request.getContextPath()+"/member?action=login");
+			response.sendRedirect(request.getContextPath()+"/member?action=mvLogin");
 		}		
 	}
-	 */
 	//이메일로 로그인
-	private void login(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
-		System.out.println("로그인 요청");
-		String email = request.getParameter("user_email");		
-		String password = request.getParameter("user_password");
-		MemberDto member= new MemberDto(null,email,password,null,null);
-		MemberDto getMember = memberService.loginByEamil(member);		
-
-		if(getMember!=null) {//로그인 성공
-			System.out.println("로그인 성공 : "+getMember);
-			HttpSession session = request.getSession();
-			session.setAttribute("getMember", getMember);
-			String isRemember = request.getParameter("isRemember");
-			System.out.println("isRemember : "+isRemember);
-			if(isRemember!=null) {//아이디 기억
-				Cookie cookie= new Cookie("rememberEmail",email);
-				cookie.setMaxAge(60*60);//1시간 기억
-				response.addCookie(cookie);
-			}else {//아이디 기억x
-				Cookie cookie = new Cookie("rememberEmail",email);
-				cookie.setMaxAge(0);
-				response.addCookie(cookie);
-			}			
-			response.sendRedirect(request.getContextPath());
-		}else {//로그인 실패
-			System.out.println("로그인 실패");
-			response.sendRedirect(request.getContextPath()+"/member?action=login");
-		}		
-	}
+//	private void login(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+//		System.out.println("로그인 요청");
+//		String email = request.getParameter("user_email");		
+//		String password = request.getParameter("user_password");
+//		MemberDto member= new MemberDto(null,email,password,null,null);
+//		MemberDto getMember = memberService.loginByEamil(member);		
+//
+//		if(getMember!=null) {//로그인 성공
+//			System.out.println("로그인 성공 : "+getMember);
+//			HttpSession session = request.getSession();
+//			session.setAttribute("getMember", getMember);
+//			String isRemember = request.getParameter("isRemember");
+//			System.out.println("isRemember : "+isRemember);
+//			if(isRemember!=null) {//아이디 기억
+//				Cookie cookie= new Cookie("rememberEmail",email);
+//				cookie.setMaxAge(60*60);//1시간 기억
+//				response.addCookie(cookie);
+//			}else {//아이디 기억x
+//				Cookie cookie = new Cookie("rememberEmail",email);
+//				cookie.setMaxAge(0);
+//				response.addCookie(cookie);
+//			}			
+//			response.sendRedirect(request.getContextPath());
+//		}else {//로그인 실패
+//			System.out.println("로그인 실패");
+//			response.sendRedirect(request.getContextPath()+"/member?action=login");
+//		}		
+//	}
 
 	private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		System.out.println("로그아웃 요청");

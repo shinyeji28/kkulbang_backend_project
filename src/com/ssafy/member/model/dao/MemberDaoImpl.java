@@ -116,7 +116,7 @@ public class MemberDaoImpl implements MemberDao {
 		
 	}
 	@Override
-	public int findUser(MemberDto member) throws SQLException {//로그인:아이디 비번 받아서 일치하는지 여부만		
+	public String findUser(MemberDto member) throws SQLException {//로그인:아이디 비번 받아서 일치하는지 여부만		
 		String sql ="select * from member\r\n" + 
 				"where user_id=? and user_name=? and user_email=?";
 		Connection conn= null;
@@ -130,9 +130,9 @@ public class MemberDaoImpl implements MemberDao {
 			pstmt.setString(3, member.getUserEmail());
 			rs=pstmt.executeQuery();
 			if(rs.next()) {		
-				return rs.getInt("member_no");
+				return rs.getString("user_password");
 			}
-			return 0;
+			return null;
 
 		}finally {
 			dbUtil.close(rs,pstmt,conn);

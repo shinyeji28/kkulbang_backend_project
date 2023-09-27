@@ -7,7 +7,9 @@ window.onload = function () {
   let signin_btn = document.querySelector(".signin__btn");
   let check = document.querySelector(".check");
   let name = document.querySelector("#input_name");
-  console.log("name", name);
+let login=document.querySelector("#login");
+let regist=document.querySelector("#regist");
+  let findPass=document.querySelector("#login_reset");
 
   //----------- sign up ---------------------
   signup.addEventListener("click", function (e) {
@@ -23,6 +25,10 @@ window.onload = function () {
     if (check.style.display !== "none") {
       check.style.display = "none";
     }
+	login.style.display = "none";
+	regist.style.display = "block";
+	findPass.style.display = "none";
+	console.log("click regist");
   });
 
   //----------- sign in ---------------------
@@ -39,5 +45,13 @@ window.onload = function () {
     if (check.style.display == "none") {
       check.style.display = "block";
     }
+	console.log("click login");
+	login.style.display = "block";
+	regist.style.display = "none";
+	findPass.style.display = "none";
   });
+  reset.addEventListener("click", function (e) {
+	console.log("click reset");
+	window.
+	});
 };

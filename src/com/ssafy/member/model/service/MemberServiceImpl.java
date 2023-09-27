@@ -41,7 +41,7 @@ public class MemberServiceImpl implements MemberService {
 		return MemberDaoImpl.getInstance().loginByEamil(member);
 	}
 	@Override
-	public int findUser(MemberDto member) throws SQLException{
+	public String findUser(MemberDto member) throws SQLException{
 		return MemberDaoImpl.getInstance().findUser(member);
 	}
 }

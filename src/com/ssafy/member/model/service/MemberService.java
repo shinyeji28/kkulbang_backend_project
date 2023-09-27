@@ -17,6 +17,6 @@ public interface MemberService {
 	
 	MemberDto loginByEamil(MemberDto member) throws SQLException;
 	
-	int findUser(MemberDto member) throws SQLException;
+	String findUser(MemberDto member) throws SQLException;
 
 }
