@@ -178,4 +178,38 @@ public class BoardDaoImpl implements BoardDao {
 		}
 	}
 
+	@Override
+	public List<BoardDto> getNoticeList() throws Exception {
+		System.out.println("A");
+		BoardDto boardDto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * \r\n" + 
+				"from board limit 5;";
+		try {
+			List<BoardDto> list = new ArrayList<>();
+			conn = dbUtil.getConnection();
+			
+			pstmt = conn.prepareStatement(sql.toString());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				boardDto = new BoardDto();
+				boardDto.setArticleNo(rs.getInt("article_no"));
+				boardDto.setUserId(rs.getString("user_id"));
+				boardDto.setSubject(rs.getString("subject"));
+				boardDto.setContent(rs.getString("content"));
+				boardDto.setHit(rs.getInt("hit"));
+				boardDto.setRegisterTime(rs.getString("register_time"));
+				System.out.println(boardDto);
+				list.add(boardDto);
+			}
+			return list;		
+
+			
+		} finally {
+			dbUtil.close(rs, pstmt, conn);
+		}
+	}
+
 }
