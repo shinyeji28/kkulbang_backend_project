@@ -7,7 +7,7 @@
 --%>
 <header>
 	<div class="header-wrap">
-		<a class="logo" href="index.html"> <img
+		<a class="logo" href="${pageContext.request.contextPath}"> <img
 			src="${pageContext.request.contextPath}/assets/images/icon.png"
 			alt="꿀방icon" />
 			<h1>꿀방</h1>
