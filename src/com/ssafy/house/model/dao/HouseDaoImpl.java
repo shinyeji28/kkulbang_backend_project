@@ -53,7 +53,7 @@ public class HouseDaoImpl implements HouseDao {
 		String code = dongCode.substring(0,2);
 		String sql = "select dongCode, gugunName\r\n"
 				+ "from dongcode\r\n"
-				+ "where dongCode like concat(?,'%') and dongName is null;";
+				+ "where dongCode like concat(?,'%') and dongName is null and gugunName is not null;";
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -84,7 +84,7 @@ public class HouseDaoImpl implements HouseDao {
 
 		String sql = "select dongCode, dongName\r\n"
 				+ "from dongcode\r\n"
-				+ "where dongCode like concat(?,'%');";
+				+ "where dongCode like concat(?,'%') and dongName is not null;";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -110,7 +110,6 @@ public class HouseDaoImpl implements HouseDao {
 	
 	public List<HouseInfoDto> searchByDongCode(String dongCode, String aptName) throws SQLException {
 		String sql="";
-		System.out.println(dongCode +" "+aptName);
 		if(dongCode!="" && aptName != "") {
 			 sql = "select * from houseinfo where dongCode = ? and apartmentName like concat('%',?,'%')";
 		}
@@ -119,30 +118,24 @@ public class HouseDaoImpl implements HouseDao {
 		}else if(aptName=="") {
 			 sql = "select * from houseinfo where dongCode = ?";
 		}
-		System.out.println(sql);
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try{
-			System.out.println("try");
 			List<HouseInfoDto> list = new ArrayList<HouseInfoDto>();
 			conn = dbUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			if(dongCode!="" && aptName != "") {
-				System.out.println("a");
 				pstmt.setString(1, dongCode);
 				pstmt.setString(2, aptName);
 			}
 			else if(dongCode=="") {
-				System.out.println("b");
 				pstmt.setString(1, aptName);
 			}else if(aptName=="") {
-				System.out.println("c");
 				pstmt.setString(1, dongCode);
 			}
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				System.out.println("rs");
 				long aptCode = rs.getLong("aptCode");
 				int buildYear = rs.getInt("buildYear");
 				String roadName = rs.getString("roadName");
@@ -169,7 +162,6 @@ public class HouseDaoImpl implements HouseDao {
 						apartmentName, jibun, lng, lat);
 				list.add(houseInfoDto);
 				
-				System.out.println(houseInfoDto);
 			}
 			return list;
 			
