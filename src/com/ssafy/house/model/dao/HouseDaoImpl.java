@@ -110,31 +110,39 @@ public class HouseDaoImpl implements HouseDao {
 	
 	public List<HouseInfoDto> searchByDongCode(String dongCode, String aptName) throws SQLException {
 		String sql="";
-		if(dongCode==null) {
-			 sql = "select * from houseinfo where apartmentName like concat('%',?,'%')";
-		}else if(aptName==null) {
-			 sql = "select * from houseinfo where dongCode = ?";
-		}else {
+		System.out.println(dongCode +" "+aptName);
+		if(dongCode!="" && aptName != "") {
 			 sql = "select * from houseinfo where dongCode = ? and apartmentName like concat('%',?,'%')";
-
 		}
+		else if(dongCode=="") {
+			 sql = "select * from houseinfo where apartmentName like concat('%',?,'%')";
+		}else if(aptName=="") {
+			 sql = "select * from houseinfo where dongCode = ?";
+		}
+		System.out.println(sql);
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try{
+			System.out.println("try");
 			List<HouseInfoDto> list = new ArrayList<HouseInfoDto>();
 			conn = dbUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			if(dongCode==null) {
-				pstmt.setString(1, aptName);
-			}else if(aptName==null) {
-				pstmt.setString(1, dongCode);
-			}else {
+			if(dongCode!="" && aptName != "") {
+				System.out.println("a");
 				pstmt.setString(1, dongCode);
 				pstmt.setString(2, aptName);
 			}
+			else if(dongCode=="") {
+				System.out.println("b");
+				pstmt.setString(1, aptName);
+			}else if(aptName=="") {
+				System.out.println("c");
+				pstmt.setString(1, dongCode);
+			}
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
+				System.out.println("rs");
 				long aptCode = rs.getLong("aptCode");
 				int buildYear = rs.getInt("buildYear");
 				String roadName = rs.getString("roadName");
@@ -160,6 +168,8 @@ public class HouseDaoImpl implements HouseDao {
 						bubun, sigunguCode, eubmyundongCode, dongCode1, landCode,
 						apartmentName, jibun, lng, lat);
 				list.add(houseInfoDto);
+				
+				System.out.println(houseInfoDto);
 			}
 			return list;
 			

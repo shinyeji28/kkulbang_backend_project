@@ -68,7 +68,7 @@ public class HouseController extends HttpServlet {
 		System.out.println("아파트 정보 받기");
 		String dongCode = (String) request.getParameter("dongCode");
 		String aptName = (String) request.getParameter("aptName");
-		
+		System.out.println("controller: "+dongCode+" "+aptName);
 		// 동 데이터 받아오기
 		List<HouseInfoDto> aptList = houseService.searchByDongCode(dongCode,aptName);
 		// jackson 넘기기 

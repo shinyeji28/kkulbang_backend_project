@@ -144,18 +144,26 @@ function dongOnChange(dong) {
     .then((data) => aptListParsing(data));
 } 
 function aptListParsing(datas) {
+  if(datas.length==0){
+	notFound();
+	return;
+  }
   let aptListDiv = document.querySelector("#aptListDiv");
   let markList = [];
   let firstDataPos = []; // 첫번째 데이터의 위도와 경도
   if(datas){
 	  aptListDiv.innerHTML = ``;	 
 	  datas.forEach(function(data){
+		let roadNameBonbun = data.roadNameBonbun;
+		if(roadNameBonbun!=null){
+			roadNameBonbun = data.roadNameBonbun.replace(/(^0+)/,"")
+		}
 	    firstDataPos= [data.lat, data.lng];
 	    aptListDiv.innerHTML += ` 
 	    <ul onclick=aptDeal(${data.aptCode})>
 	      <li><h3>${data.apartmentName}<h3></li>
 	      <br>  
-	      <li>${data.dong} ${data.roadName} ${data.roadNameBonbun.replace(/(^0+)/,"")}</li>
+	      <li>${data.dong} ${data.roadName} ${roadNameBonbun}</li>
 	      <li>건축년도 : ${data.buildYear}</li>
 	    </ul>`;
 	    
@@ -222,4 +230,16 @@ function searchKeyword(){
   fetch(url)
     .then((response) => response.json())
     .then((data) => {aptListParsing(data)});
+}
+
+// 조회 결과가 없음을 알리는 alert
+function notFound(){
+	if(selectedDong!="" && selectedDongCode!=""){
+		alert(`${selectedSido} ${selectedGugun} ${selectedDong}에서 "${aptKeyword}"아파트 정보를 찾을 수 없습니다.`);
+	}else if(selectedDong==""){
+		alert(`${aptKeyword}아파트 정보를 찾을 수 없습니다.`);
+	}else if(selectedDongCode==""){
+		alert(`${selectedSido} ${selectedGugun} ${selectedDong}에서 아파트 정보를 찾을 수 없습니다.`);
+	}
+	location.reload();
 }
