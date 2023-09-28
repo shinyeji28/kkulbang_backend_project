@@ -159,13 +159,14 @@ function aptListParsing(datas) {
 			roadNameBonbun = data.roadNameBonbun.replace(/(^0+)/,"")
 		}
 	    firstDataPos= [data.lat, data.lng];
-	    aptListDiv.innerHTML += ` 
+	    aptListDiv.innerHTML += `
 	    <ul onclick=aptDeal(${data.aptCode})>
 	      <li><h3>${data.apartmentName}<h3></li>
 	      <br>  
 	      <li>${data.dong} ${data.roadName} ${roadNameBonbun}</li>
 	      <li>건축년도 : ${data.buildYear}</li>
-	    </ul>`;
+	    </ul>
+		`;
 	    
 	    markList.push({
 	      title: data.apartmentName,
@@ -197,7 +198,7 @@ function dealListParsing(datas){
   let dealAreaTitle = document.querySelector("#dealAreaTitle");
   
   dealAreaTitle.innerText=`
-  "${selectedSido} ${selectedGugun} ${selectedDong}"에 대한 거래 정보 조회
+  "${selectedSido} ${selectedGugun} ${selectedDong}"에 대한 거래 정보
   `;
   dealData.innerHTML = `	
     <tr>
@@ -234,11 +235,11 @@ function searchKeyword(){
 
 // 조회 결과가 없음을 알리는 alert
 function notFound(){
-	if(selectedDong!="" && selectedDongCode!=""){
+	if(selectedDong!="" && aptKeyword!=""){
 		alert(`${selectedSido} ${selectedGugun} ${selectedDong}에서 "${aptKeyword}"아파트 정보를 찾을 수 없습니다.`);
 	}else if(selectedDong==""){
 		alert(`${aptKeyword}아파트 정보를 찾을 수 없습니다.`);
-	}else if(selectedDongCode==""){
+	}else if(aptKeyword==""){
 		alert(`${selectedSido} ${selectedGugun} ${selectedDong}에서 아파트 정보를 찾을 수 없습니다.`);
 	}
 	location.reload();

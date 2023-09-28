@@ -165,6 +165,7 @@ td {
 
 .nav-right-wrap ul {
   padding: 0 20px;
+  cursor: pointer;
 }
 
 .nav-right-wrap ul li:first-child {
@@ -174,4 +175,15 @@ td {
 .nav-right-wrap ul li:last-child {
   padding-bottom: 20px;
   border-bottom: 1px solid black;
+}
+.nav-right-wrap ul:hover{
+	color:  #ffa100;
+	
+}
+
+/* 실거래 상세 조회  */
+.dealTab-wrap{
+  height:70vh;
+  max-height: 70vh;
+  overflow: auto
 }

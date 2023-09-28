@@ -55,7 +55,6 @@ public class HouseController extends HttpServlet {
 	private void getAptDealList(HttpServletRequest request, HttpServletResponse response) throws StreamWriteException, DatabindException, IOException, SQLException {
 		System.out.println("아파트 거래 정보 받기");
 		long aptCode = Long.parseLong(request.getParameter("aptCode"));
-		System.out.println((String) request.getParameter("aptCode"));
 		List<HouseDealDto> dealList = houseService.getAptDealInfo(aptCode);
 		// jackson 넘기기 
 		ObjectMapper mapper = new ObjectMapper();

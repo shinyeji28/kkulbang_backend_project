@@ -101,8 +101,8 @@
             <div id="map" class="map" style="width: 100%; height: 70vh"></div>
           </div>
         </div>
-        <div id="dealSection" class="show-wrap">
-        	<h2 id="dealAreaTitle"></h2>
+        <div id="dealSection" class="show-wrap dealTab-wrap">
+        	<h2 id="dealAreaTitle">실거래 상세 조회</h2>
         	<br/>
         	<table id="dealData">
 
