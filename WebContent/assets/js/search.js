@@ -160,7 +160,7 @@ function aptListParsing(datas) {
 		}
 	    firstDataPos= [data.lat, data.lng];
 	    aptListDiv.innerHTML += `
-	    <ul onclick=aptDeal(${data.aptCode})>
+	    <ul onclick=aptDeal(${data.aptCode},"${data.apartmentName}")>
 	      <li><h3>${data.apartmentName}<h3></li>
 	      <br>  
 	      <li>${data.dong} ${data.roadName} ${roadNameBonbun}</li>
@@ -186,19 +186,19 @@ function aptListParsing(datas) {
 }
 
 // 아파트 거래 정보 
-function aptDeal(aptCode){
+function aptDeal(aptCode, aptName){
 	
   let url = `${root}/house?action=deal&aptCode=${aptCode}`;
   fetch(url)
     .then((response) => response.json())
-    .then((data) => {dealListParsing(data)});
+    .then((data) => {dealListParsing(data, aptName)});
 }
-function dealListParsing(datas){
+function dealListParsing(datas, aptName){
   let dealData = document.querySelector("#dealData");
   let dealAreaTitle = document.querySelector("#dealAreaTitle");
   
   dealAreaTitle.innerText=`
-  "${selectedSido} ${selectedGugun} ${selectedDong}"에 대한 거래 정보
+  "${selectedSido} ${selectedGugun} ${selectedDong} ${aptName}"에 대한 거래 정보
   `;
   dealData.innerHTML = `	
     <tr>
