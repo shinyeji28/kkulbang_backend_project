@@ -148,8 +148,9 @@ public class MemberController extends HttpServlet {
 			System.out.println("로그인 실패");
 			pageUrl += "/member?action=mvLogin";
 			writer.println("<script>alert('로그인을 실패했습니다.'); location.href='"+pageUrl+"';</script>"); 
+		}	
+		writer.close();
 
-		}		
 	}
 	//로그아웃
 	private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
