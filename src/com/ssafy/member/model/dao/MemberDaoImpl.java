@@ -21,7 +21,7 @@ public class MemberDaoImpl implements MemberDao {
 	private DBUtil dbUtil = DBUtil.getInstance();
 
 	@Override
-	public void registerMember(MemberDto memberDto) {//회원 가입(등록)
+	public int registerMember(MemberDto memberDto) {//회원 가입(등록)
 		Connection conn =null;
 		PreparedStatement pstmt = null;
 		String sql="insert into member (user_id,user_name,user_password,user_email)\r\n" + 
@@ -37,13 +37,15 @@ public class MemberDaoImpl implements MemberDao {
 			pstmt.setString(2, memberDto.getUserName());
 			pstmt.setString(3, memberDto.getUserPass());
 			pstmt.setString(4, memberDto.getUserId());
-			pstmt.executeUpdate();
+			int cnt = pstmt.executeUpdate();
+			return cnt;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			dbUtil.close(pstmt,conn);
 		}
+		return 0;
 
 	}
 	@Override

@@ -15,8 +15,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void registerMember(MemberDto memberDto) {
-		MemberDaoImpl.getInstance().registerMember(memberDto);
+	public int registerMember(MemberDto memberDto) {
+		return MemberDaoImpl.getInstance().registerMember(memberDto);
 
 	}
 

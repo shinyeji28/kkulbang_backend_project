@@ -8,7 +8,7 @@ import com.ssafy.member.model.dto.MemberDto;
 
 public interface MemberDao {
 
-	void registerMember(MemberDto memberDto);
+	int registerMember(MemberDto memberDto);
 
 	MemberDto login(MemberDto memberDto) throws SQLException;
 

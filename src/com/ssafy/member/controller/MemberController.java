@@ -1,6 +1,7 @@
 package com.ssafy.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -78,17 +79,27 @@ public class MemberController extends HttpServlet {
 		request.getRequestDispatcher("/member/adminPage.jsp").forward(request, response);	
 	}
 	//회원가입
-	private void regist(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void regist(HttpServletRequest request, HttpServletResponse response) throws IOException {		
 		System.out.println("회원가입");
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
-		String repeatPass = request.getParameter("repeatPassword");
+//		String repeatPass = request.getParameter("repeatPassword");
 		MemberDto member= new MemberDto(id,name,password,null,null);
 		System.out.println("등록할 정보: "+member);
-		memberService.registerMember(member);
+		int cnt = memberService.registerMember(member);
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer = response.getWriter();
+		String pageUrl = request.getContextPath()+"/member?action=mvLogin";
+		if(cnt==0) {
+			writer.println("<script>alert('회원가입을 실패했습니다.'); location.href='"+pageUrl+"';</script>"); 
 		
-		response.sendRedirect(request.getContextPath()+"/member?action=mvLogin");
+		}else {
+			writer.println("<script>alert('회원가입을 성공했습니다.'); location.href='"+pageUrl+"';</script>"); 
+		}
+		writer.close();
+
+		
 	}
 	//비밀번호 찾기
 	private void findUser(HttpServletRequest request, HttpServletResponse response) throws SQLException {
@@ -111,6 +122,10 @@ public class MemberController extends HttpServlet {
 		MemberDto member= new MemberDto(id,null,password,null,null);
 		MemberDto userInfo = memberService.login(member);
 
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer = response.getWriter();
+		String pageUrl = request.getContextPath();
+		
 		if(userInfo!=null) {//로그인 성공
 			System.out.println("로그인 성공 : "+userInfo);
 			HttpSession session = request.getSession();
@@ -127,10 +142,13 @@ public class MemberController extends HttpServlet {
 				cookie.setMaxAge(0);
 				response.addCookie(cookie);
 			}			
-			response.sendRedirect(request.getContextPath());
+
+			writer.println("<script>alert('로그인을 성공했습니다.'); location.href='"+pageUrl+"';</script>"); 
 		}else {//로그인 실패
 			System.out.println("로그인 실패");
-			response.sendRedirect(request.getContextPath()+"/member?action=mvLogin");
+			pageUrl += "/member?action=mvLogin";
+			writer.println("<script>alert('로그인을 실패했습니다.'); location.href='"+pageUrl+"';</script>"); 
+
 		}		
 	}
 	//로그아웃
