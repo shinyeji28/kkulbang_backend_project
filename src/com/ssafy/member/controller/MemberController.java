@@ -36,9 +36,6 @@ public class MemberController extends HttpServlet {
 			case "logout"://로그아웃
 				logout(request,response);
 				break;
-			case "mvFindPass"://비밀번호 찾기
-				request.getRequestDispatcher("/member/findUser.jsp").forward(request, response);
-				break;
 			case "findUser"://비밀번호 찾기
 				findUser(request,response);
 				break;
@@ -102,14 +99,25 @@ public class MemberController extends HttpServlet {
 		
 	}
 	//비밀번호 찾기
-	private void findUser(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+	private void findUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 		System.out.println("비밀번호 찾기 요청");
-		String id=request.getParameter("id");
-		String name=request.getParameter("name");
-		String email=request.getParameter("email");
+		String id=request.getParameter("find_id");
+		String name=request.getParameter("find_name");
+		String email=request.getParameter("find_email");
 		MemberDto member= new MemberDto(id,name,null,email,null);
+		System.out.println("찾을 회원 정보 : "+member);
 		String password=memberService.findUser(member);
 		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer = response.getWriter();
+		String pageUrl = request.getContextPath()+"/member?action=mvLogin";
+		if(password!=null) {
+			writer.println("<script>alert('"+id+"님의 비밀번호는 "+password+"입니다.'); window.close(); </script>"); 
+		
+		}else {
+			writer.println("<script>alert('입력하신 정보의 회원 정보가 존재하지 않습니다.'); window.close(); </script>"); 
+		}
+		writer.close();
 
 	}
 	// id로 로그인

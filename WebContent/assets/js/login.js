@@ -6,10 +6,10 @@ window.onload = function () {
   let hidden_input = document.querySelector("#repeat__password");
   let signin_btn = document.querySelector(".signin__btn");
   let check = document.querySelector(".check");
-  let name = document.querySelector("#input_name");
-	console.log("name",name);
+  let name = document.querySelector("#name");
+  const root =  window.location.pathname+"/findUser.jsp";
 
-  //----------- sign up ---------------------
+  //----------- sign up 로그아웃 ---------------------
   signup.addEventListener("click", function (e) {
     e.preventDefault();
     signup.style.opacity = "1";
@@ -25,7 +25,7 @@ window.onload = function () {
 	document.querySelector("input[name=action]").value="regist";
   });
 
-  //----------- sign in ---------------------
+  //----------- sign in 로그인---------------------
   signin.addEventListener("click", function (e) {
     e.preventDefault();
     signin.style.opacity = "1";
@@ -37,12 +37,13 @@ window.onload = function () {
     signin_btn.innerText = "Sign in";
     name.style.display = "none";//이름 없애기
     check.style.display = "block";//체크박스 보이기
+    console.log("click 로그인");
 	document.querySelector("input[name=action]").value="login";
   });
 //----------- find password  ---------------------
   reset.addEventListener("click", function (e) {
 	console.log("click reset");
-	 //window.open("../member,ad=findUser.jsp", "비밀번호 찾기", "width=400, height=300, top=50, left=50");
+	window.open(root, "비밀번호 찾기", "width=400, height=300, top=50, left=50");
 	console.log("출력 reset");
 	});
 };

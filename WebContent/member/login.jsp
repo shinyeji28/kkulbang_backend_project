@@ -38,14 +38,14 @@
 					name="id" value="${cookie.rememberId.value }" />
 			</div>
 			<!-- name input -->
-			<div class="input__block" style="display: none">
-				<input type="text" placeholder="Name" class="input" id="input_name"
-					name="input_name" />
+			<div class="input__block" >
+				<input type="text" placeholder="Name" class="input" id="name"
+					name="name" style="display: none"/>
 			</div>
 			<!-- password input -->
 			<div class="input__block">
 				<input type="password" placeholder="Password" class="input"
-					id="password" name="password" />
+					id="password" name="password" autoComplete="off"/>
 			</div>
 			<!-- id checkbox -->
 			<div class="check">
